@@ -16,3 +16,32 @@
 body{
   font-family: "Raleway";
 }
+
+
+footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height:40px;
+  width: 100%;
+  background: white;
+}
+
+footer div{
+  float: right;
+  font-size: 12px;
+  color: darkgrey;
+  margin-right: 2.7%;
+  margin-top: 1%;
+  font-weight: bold;
+  text-shadow: 2px 2px whitesmoke;
+}
+footer div a{
+  color: darkgrey;
+  text-shadow: 2px 2px whitesmoke;
+}
+footer div a:hover,footer div a:after{
+  text-decoration: none;
+  color: darkgrey;
+  text-shadow: 2px 2px whitesmoke;
+}

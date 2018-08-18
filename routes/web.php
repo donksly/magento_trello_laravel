@@ -11,4 +11,4 @@
 |
 */
 
-Route::get('/', 'OrdereController@index');
+Route::get('/', 'OrdersController@index');
