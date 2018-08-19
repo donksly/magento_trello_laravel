@@ -8,6 +8,12 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// Bootstrap data tables
+/*@import '~bootstrap/scss/bootstrap';*/
+
+//Font Awesome
+@import "~font-awesome/scss/font-awesome";
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -17,14 +23,208 @@ body{
   font-family: "Raleway";
 }
 
+body a:hover, body a:active{
+  text-decoration: none;
+}
+
+.content{
+  padding: 2%;
+}
+
+.content a{
+  border: none;
+}
+
+.page-item.active .page-link {
+  z-index: 0 !important;
+}
+
+#dom-loader-animation{
+  color: teal;
+  margin-top: 30%;
+  margin-left: 50%;
+  position: fixed;
+  z-index: 9;
+  display: none;
+}
+
+.header-and-nav{
+  width: 100%;
+  min-height: 100px;
+  background-color: teal;
+  position: fixed;
+  z-index: 9;
+}
+
+
+.header-and-nav h2{
+  color: white;
+}
+
+.header-and-nav h2 span{
+  font-size: 14px;
+}
+
+
+.header-nav-links-elements{
+  width: 100%;
+  margin-top: 100px;
+  min-height: 50px;
+  background-color: white;
+  border-bottom: .5px solid rgba(0,0,0,.2);
+  position: fixed;
+  z-index: 9
+}
+
+.header-nav-links-elements #nav-magento-dashboard{
+  margin-left: 29px;
+  margin-top: .5%;
+}
+
+.header-nav-links-elements #nav-elements ul{
+  margin-right: 46px;
+  margin-top: 4%;
+}
+
+.header-nav-links-elements #nav-elements ul li{
+  display: inline-block;
+  margin-right: 40px;
+}
+
+.header-nav-links-elements #nav-elements ul li a{
+  color: darkgrey;
+  font-weight: bold;
+}
+
+.header-nav-links-elements #nav-elements ul li .active{
+  color: grey;
+}
+
+.render-body-content{
+  margin-top: 140px;
+}
+
+.render-body-content .current-page-title{
+  color: grey;
+  align-items: center;
+  text-align: center;
+}
+@media (max-width: 1125px) {
+  .render-body-content{
+    margin-top: 210px;
+    margin-left: 4%;
+  }
+}
+
+#all_orders_table_filter, .dataTables_paginate{
+  float: right;
+}
+
+.render-body-content .article-status-color-legend{
+  padding-bottom: 3%;
+}
+
+.render-body-content .article-status-color-legend table{
+  font-size: 13px;
+  max-width: 30%;
+}
+
+.render-body-content .article-status-color-legend table tr td a{
+  border: none;
+}
+
+.render-body-content .article-status-color-legend table tr td a::after{
+  border: none;
+}
+
+.render-body-content .article-status-color-legend table tr td a:focus{
+  border: none;
+}
+
+#status-color-created{
+  background-color: cadetblue;
+  width: 50px;
+  height: 24px;
+}
+
+#status-color-shipped{
+  background-color: cornflowerblue;
+  width: 50px;
+  height: 24px;
+}
+
+#status-color-delivered{
+  background-color: #007bff;
+  width: 50px;
+  height: 24px;
+}
+
+#status-color-closed{
+  background-color: lightgreen;
+  width: 50px;
+  height: 24px;
+}
+
+#status-color-asked-return{
+  background-color: lightpink;
+  width: 50px;
+  height: 24px;
+}
+
+#status-color-created-returned{
+  background-color: deeppink;
+  width: 50px;
+  height: 24px;
+}
+
+#status-color-problematic{
+  background-color: firebrick;
+  width: 50px;
+  height: 24px;
+}
+
+#view-order-in-magento img{
+  max-width: 24px;
+  max-height: 24px;
+  width: 50px;
+  height: 24px;
+}
+
+.all-orders-table-div table a{
+  color: grey;
+  font-size: 17px;
+  width: 50px;
+  height: 24px;
+}
+
+#error-in-logs{
+  color: sandybrown;
+}
+
+#viewed-icon{
+  color: cornflowerblue;
+}
+
+#import-json-to-orders textarea{
+  height: 200px;
+  width: 100%;
+}
+
+
+
+
+
+
+
 
 footer{
   position: fixed;
   left: 0;
   bottom: 0;
-  height:40px;
+  height:50px;
   width: 100%;
   background: white;
+  border-top: 1px solid rgba(0,0,0,.2);
 }
 
 footer div{
@@ -32,16 +232,119 @@ footer div{
   font-size: 12px;
   color: darkgrey;
   margin-right: 2.7%;
-  margin-top: 1%;
+  margin-top: .5%;
   font-weight: bold;
-  text-shadow: 2px 2px whitesmoke;
 }
 footer div a{
-  color: darkgrey;
-  text-shadow: 2px 2px whitesmoke;
+  color: mediumpurple;
+  font-weight: bold;
 }
 footer div a:hover,footer div a:after{
   text-decoration: none;
-  color: darkgrey;
-  text-shadow: 2px 2px whitesmoke;
+  font-weight: bold;
+  color: rebeccapurple;
 }
+
+footer #the-developer-footer{
+  font-size: 13px;
+  margin-left: 20px;
+}
+
+footer .img-responsive{
+  margin-left: 20px;
+}
+
+/**Toast css start**/
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #333; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 999; /* Add a z-index if needed */
+  left: 50%; /* Center the snackbar */
+  /*bottom: 30px;*/ /* 30px from the bottom */
+  bottom: 50%; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+  visibility: visible; /* Show the snackbar */
+
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  /*to {bottom: 30px; opacity: 1;}*/
+  to {bottom: 50%; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  /*to {bottom: 30px; opacity: 1;}*/
+  to {bottom: 50%; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 50%; opacity: 1;}
+  /*from {bottom: 30px; opacity: 1;}*/
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  /*from {bottom: 30px; opacity: 1;}*/
+  from {bottom: 50%; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+/**Toast css stop**/
+
+/**Top css start**/
+
+.cd-top {
+  padding: 2%;
+  display: inline-block;
+  height: 35px;
+  width: 35px;
+  position: fixed;
+  bottom: 40px;
+  right: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  /* image replacement properties */
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+  -moz-transition: opacity .3s 0s, visibility 0s .3s;
+  transition: opacity .3s 0s, visibility 0s .3s;
+}
+.cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {
+  -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+  -moz-transition: opacity .3s 0s, visibility 0s 0s;
+  transition: opacity .3s 0s, visibility 0s 0s;
+}
+.cd-top.cd-is-visible {
+  /* the button becomes visible */
+  visibility: visible;
+  opacity: 1;
+}
+.cd-top.cd-fade-out {
+  /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+  opacity: .5;
+}
+.no-touch .cd-top:hover {
+  background-color: #73879C;
+  opacity: 1;
+}
+/**Top css stop**/

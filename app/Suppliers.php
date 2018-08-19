@@ -8,7 +8,7 @@ class Suppliers extends Model
 {
     protected $table = "module_suppliers";
 
-    protected $fillable = ['name','url'];
+    protected $fillable = ['name','url','email'];
 
     public function ordersRelationship()
     {
