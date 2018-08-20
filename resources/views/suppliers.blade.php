@@ -16,11 +16,11 @@
                 </div>
                 <div class="form-group">
                     <label for="new_supplier_url">URL address:</label>
-                    <input type="url" class="form-control" name="new_supplier_url" id="new_supplier_url" maxlength="50" required>
+                    <input type="url" class="form-control" name="new_supplier_url" id="new_supplier_url" maxlength="50" value="{{ old('new_supplier_url') }}" required>
                 </div>
                 <div class="form-group">
                     <label for="new_supplier_email">Email address:</label>
-                    <input type="email" class="form-control" name="new_supplier_email" id="new_supplier_email" maxlength="50" required>
+                    <input type="email" class="form-control" name="new_supplier_email" id="new_supplier_email" maxlength="50" {{ old('new_supplier_email') }} required>
                 </div>
                 <button class="btn btn-primary" type="submit">
                     <i class="fa fa-send"></i>

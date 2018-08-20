@@ -91,3 +91,11 @@
 </footer>
 <script src="{{asset('js/app.js')}}"></script>
 </html>
+<script>
+    function toast_message(message) {
+        var x = document.getElementById("snackbar");
+        $(x).html('<i class="fa fa-info-circle fa-lg"></i> '+message);
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    }
+</script>

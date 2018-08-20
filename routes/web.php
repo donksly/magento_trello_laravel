@@ -20,7 +20,7 @@ Route::post('/open_single_order_modal', 'OrdersController@loadSingleOrder');
 Route::post('/modal_fix_errors_form', 'OrdersController@');
 
 Route::get('/suppliers', 'SuppliersController@index');
-Route::post('/create_new_supplier', 'SuppliersController@');
+Route::post('/create_new_supplier', 'SuppliersController@createSuppliers');
 
 Route::get('/import', 'OrdersController@indexImport');
 Route::post('/upload_supplier_database', 'OrdersController@');
