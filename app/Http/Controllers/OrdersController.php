@@ -51,4 +51,12 @@ class OrdersController extends Controller
         );
         return view('modal_view_order', compact('request_values'));
     }
+
+    public function formatOrderNumber($number){
+        return str_pad($number, 8, "0", STR_PAD_LEFT);
+    }
+
+    public function fetchAllOrdersFromMagento(){
+
+    }
 }
