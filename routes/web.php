@@ -24,3 +24,5 @@ Route::post('/create_new_supplier', 'SuppliersController@');
 
 Route::get('/import', 'OrdersController@indexImport');
 Route::post('/upload_supplier_database', 'OrdersController@');
+
+Route::get('/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');

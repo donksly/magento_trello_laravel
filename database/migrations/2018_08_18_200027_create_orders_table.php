@@ -17,7 +17,12 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('sales_order_id')->unsigned()->index();
             $table->integer('supplier_id')->unsigned()->index();
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('previous_state')->default(0);
+            $table->tinyInteger('next_state')->default(0);
+            $table->tinyInteger('closed_check')->default(0);
+            $table->tinyInteger('status')->default(1);
+            $table->tinyInteger('viewed')->default(0);
+            $table->string('error_log', 50);
             $table->timestamps();
         });
     }

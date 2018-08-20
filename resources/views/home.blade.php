@@ -117,7 +117,7 @@
 <script src="{{asset('js/app.js')}}"></script>
 <script>
     $(document).ready(function() {
-        $('#link_import').attr('class', 'active');
+        $('#link_all_orders').attr('class', 'active');
         $('#page_header_title').html('<i class="fa fa-list"></i> All Orders');
 
         //var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');

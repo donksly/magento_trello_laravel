@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\Log;
 class OrdersController extends Controller
 {
     protected $magento_admin_url = 'http://127.0.0.1/Magento-CE-2.2.5/admin_a27nw8/';
-
     protected $single_order_url = 'http://127.0.0.1/Magento-CE-2.2.5/admin_a27nw8/sales/order/view/order_id/';
+    protected $action = array("CREATED", "SHIPPED", "DELIVERED", "CLOSED", "ASKED RETURN", "RETURNED", "PROBLEMATIC");
+    protected $action_keys = array(1,2,3,4,5,6,7);
+    protected $colors = array("cadetblue", "cornflowerblue", "#007bff", "lightgreen", "lightpink", "deeppink", "firebrick");
 
     public function index(){
         return view('home');
@@ -20,10 +22,7 @@ class OrdersController extends Controller
     }
 
     public function getStatusColorCodes(){
-        $action = array("CREATED", "SHIPPED", "DELIVERED", "CLOSED", "ASKED RETURN", "RETURNED", "PROBLEMATIC");
-        $action_keys = array(1,2,3,4,5,6,7);
-        $colors = array("cadetblue", "cornflowerblue", "#007bff", "lightgreen", "lightpink", "deeppink", "firebrick");
-        $combined = array_combine($action_keys,$colors);
+        $combined = array_combine($this->action_keys,$this->colors);
         return $combined;
     }
 

@@ -1,7 +1,6 @@
 window.$ = window.jQuery = require('jquery');
 require('datatables.net-bs4');
 require('bootstrap');
-var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 var defaultError = 'Error in request, contact developer.';
 var timerVal = 0;
 var duration = 3000;
@@ -36,6 +35,7 @@ $(document).ready(function(){
         var order_id = $(this).attr('data-order-id');
         var order_table_id = $(this).attr('data-order-table-id');
         var supplier_id = $(this).attr('data-supplier-id');
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
         $.ajax({
             type: 'post',
@@ -57,6 +57,7 @@ $(document).ready(function(){
         a.preventDefault();
         var order_id = $(this).attr('data-order-id');
         var order_table_id = $(this).attr('data-order-table-id');
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
         $.ajax({
             type: 'post',
@@ -78,6 +79,7 @@ $(document).ready(function(){
         var order_id = $(this).attr('data-order-id');
         var order_table_id = $(this).attr('data-order-table-id');
         var order_has_violations = $(this).attr('data-has-violations');
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
         $.ajax({
             type: 'post',
@@ -105,6 +107,7 @@ function toast_message(message) {
 }
 
 function checkAnyChanges(){
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
         type: 'post',
         url: '/check_any_change',
