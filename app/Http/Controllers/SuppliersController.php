@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers;
 use App\Suppliers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class SuppliersController extends Controller
 {
-    public function index(){
-        return view('suppliers');
+    public function index(Helpers $helper){
+        $get_all_suppliers = Suppliers::all()->sortBy('name');
+        return view('suppliers', compact('get_all_suppliers'))->with('helper', $helper);
     }
 
     public function createSuppliers(Request $request){

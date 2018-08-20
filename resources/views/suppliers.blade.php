@@ -38,6 +38,8 @@
                 <th>Name</th>
                 <th>URL</th>
                 <th>Email</th>
+                <th>Created at</th>
+                <th>Updated at</th>
             </tr>
             </thead>
             <tfoot>
@@ -46,15 +48,25 @@
                 <th>Name</th>
                 <th>URL</th>
                 <th>Email</th>
+                <th>Created at</th>
+                <th>Updated at</th>
             </tr>
             </tfoot>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>A</td>
-                <td>https:trello.com/kepha/a</td>
-                <td>{{ 'supplier_a@trello.com' }}</td>
-            </tr>
+            @if($get_all_suppliers!=null)
+                <?php
+                $i = 1;?>
+                @foreach($get_all_suppliers as $suppliers)
+                    <tr>
+                        <td>{{ $i++ }}</td>
+                        <td>{{ strtoupper($suppliers->name) }}</td>
+                        <td>{{ strtolower($suppliers->url) }}</td>
+                        <td>{{ strtolower($suppliers->email) }}</td>
+                        <td>{{ ucwords($helper->formatDateTimeWithSeconds($suppliers->created_at)) }}</td>
+                        <td>{{ ucwords($helper->formatDateTimeWithSeconds($suppliers->updated_at)) }}</td>
+                    </tr>
+                    @endforeach
+                @endif
             </tbody>
         </table>
     </div><br>
