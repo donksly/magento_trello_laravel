@@ -13,7 +13,15 @@ class Store extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('store', function (Blueprint $table){
+            $table->increments('store_id');
+            $table->string('code');
+            $table->tinyInteger('website_id')->default(0);
+            $table->tinyInteger('group_id')->default(0);
+            $table->string('name');
+            $table->tinyInteger('sort_order')->default(0);
+            $table->tinyInteger('is_active')->default(0);
+        });
     }
 
     /**

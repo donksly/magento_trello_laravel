@@ -13,7 +13,33 @@ class SalesInvoiceGrid extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('sales_invoice_grid', function (Blueprint $table){
+            $table->increments('entity_id');
+            $table->string('increment_id')->unsigned()->index();
+            $table->integer('state')->unsigned()->index();
+            $table->tinyInteger('strore_id')->unsigned()->index()->default(0);
+            $table->string('store_name');
+            $table->integer('order_id')->unsigned()->index();
+            $table->string('order_increment_id')->unsigned()->index();
+            $table->string('order_created_at')->unsigned()->index();
+            $table->string('customer_name')->unsigned()->index();
+            $table->string('customer_email')->unsigned()->index();
+            $table->integer('customer_group_id');
+            $table->string('payment_method');
+            $table->string('store_currency_code');
+            $table->string('order_currency_code');
+            $table->string('base_currency_code');
+            $table->string('global_currency_code');
+            $table->string('billing_name')->unsigned()->index();
+            $table->string('billing_address')->unsigned()->index();
+            $table->string('shipping_address')->unsigned()->index();
+            $table->string('shipping_information');
+            $table->decimal('subtotal', 12,4);
+            $table->decimal('shipping_and_handling', 12,4);
+            $table->decimal('grand_total', 12,4);
+            $table->decimal('base_grand_total', 12,4)->unsigned()->index();
+            $table->timestamps();
+        });
     }
 
     /**
