@@ -161,6 +161,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         /**laravel log viewer**/
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+        /**laravel trello and oauth**/
+        Gregoriohc\LaravelTrello\TrelloServiceProvider::class,
     ],
 
     /*
@@ -209,6 +211,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        /**laravel trello and oauth**/
+        'Trello' => Gregoriohc\LaravelTrello\Facades\Wrapper::class,
 
     ],
 
