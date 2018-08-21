@@ -158,7 +158,7 @@
     @endsection
 <script src="{{asset('js/app.js')}}"></script>
 <script>
-    var duration = 3000;
+    var duration = 60000;
 
     $(document).ready(function() {
         $('#link_all_orders').attr('class', 'active');

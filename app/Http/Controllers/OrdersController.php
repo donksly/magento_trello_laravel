@@ -225,17 +225,25 @@ class OrdersController extends Controller
 
         $update_ok = 1;
 
-        switch ($update_ok)
-        {
-            case ($order_previous_state == 1 && $order_next_state == 3);
-            case ($order_previous_state == 2 && $order_next_state == 4);
-            case ($order_next_state == 4 && ($order_previous_state == (1 || 2 || 3 || 5 || 6 || 7)));
-            case ($order_next_state == 6 && ($order_previous_state == (5 || 3 || 2 || 1)));
-            case ($order_next_state == 7 && ($order_previous_state == (1 || 2 || 3 || 1)));
-                $update_ok = 0;
-            break;
+        $compare_arrays = array(
+            array(3,5,6,7),
+            array(1,4,5,6,7),
+            array(1,2),
+            array(1,2,3,5,6,7),
+            array(1,2,3),
+            array(1,2,3,5,7),
+            array(1,2,3)
+        );
 
+        for($i=1; $i<sizeof($compare_arrays)+1; $i++){
+            switch ($update_ok)
+            {
+                case ($order_previous_state == $i && in_array($order_next_state, $compare_arrays[$i-1]));
+                    $update_ok = 0;
+                    break;
+            }
         }
+
         return $update_ok;
     }
 
