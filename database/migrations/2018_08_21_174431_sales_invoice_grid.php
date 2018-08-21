@@ -16,10 +16,10 @@ class SalesInvoiceGrid extends Migration
         Schema::create('sales_invoice_grid', function (Blueprint $table){
             $table->increments('entity_id');
             $table->string('increment_id')->unsigned()->index();
-            $table->integer('state')->unsigned()->index();
-            $table->tinyInteger('strore_id')->unsigned()->index()->default(0);
+            $table->string('state');
+            $table->string('store_id')->default(0);
             $table->string('store_name');
-            $table->integer('order_id')->unsigned()->index();
+            $table->string('order_id')->unsigned()->index();
             $table->string('order_increment_id')->unsigned()->index();
             $table->string('order_created_at')->unsigned()->index();
             $table->string('customer_name')->unsigned()->index();
