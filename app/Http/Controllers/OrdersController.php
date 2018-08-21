@@ -181,8 +181,6 @@ class OrdersController extends Controller
         $order_id = $request->order_id;
         $supplier_id = $request->modal_new_supplier;
 
-        Log::info($supplier_id);
-
         $supplier = new SuppliersController();
         $supplier_email = $supplier->getSingleSupplierById($supplier_id);
         $message = "You have an article return request for #".$helpers->formatOrderNumberForView($order_id);
