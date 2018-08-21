@@ -15,14 +15,14 @@ class SalesOrder extends Migration
     {
         Schema::create('sales_order', function (Blueprint $table){
             $table->increments('entity_id');
-            $table->string('state')->unsigned()->index();
-            $table->string('status')->unsigned()->index();
+            $table->string('state');
+            $table->string('status');
             $table->string('coupon_code');
             $table->string('protect_code');
             $table->string('shipping_description');
             $table->string('is_virtual');
-            $table->string('store_id')->unsigned()->index();
-            $table->string('customer_id')->unsigned()->index();
+            $table->string('store_id');
+            $table->string('customer_id');
             $table->string('base_discount_amount');
             $table->string('base_discount_canceled');
             $table->string('base_discount_invoiced');
@@ -87,12 +87,12 @@ class SalesOrder extends Migration
             $table->string('billing_address_id');
             $table->string('customer_group_id');
             $table->string('edit_increment');
-            $table->string('email_sent')->unsigned()->index();
-            $table->string('send_email')->unsigned()->index();
+            $table->string('email_sent');
+            $table->string('send_email');
             $table->string('forced_shipment_with_invoice');
             $table->string('payment_auth_expiration');
             $table->string('quote_address_id');
-            $table->string('quote_id')->unsigned()->index();
+            $table->string('quote_id');
             $table->string('shipping_address_id');
             $table->string('adjustment_negative');
             $table->string('adjustment_positive');
@@ -118,7 +118,7 @@ class SalesOrder extends Migration
             $table->string('customer_suffix');
             $table->string('customer_taxvat');
             $table->string('discount_description');
-            $table->string('ext_customer_id')->unsigned()->index();
+            $table->string('ext_customer_id');
             $table->string('ext_order_id');
             $table->string('global_currency_code');
             $table->string('hold_before_state');
