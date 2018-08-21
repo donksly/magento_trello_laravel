@@ -7,9 +7,9 @@
     <title>Stockly | E-Retailer</title>
     <meta name="author" content="Kepha Okello">
     <meta name="viewport" content="width=device-width">
-    <link rel="shortcut icon" href="{{ asset('images/eretailer_logo.png') }}">
+    <link rel="shortcut icon" href="{{ secure_asset('images/eretailer_logo.png') }}">
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
 </head>
 <body>
 
@@ -26,7 +26,7 @@
     <div class="header-nav-links-elements">
         <div class="header-nav-links">
             <div class="pull-left" id="nav-magento-dashboard">
-                <a href="{{ $magento_admin_url }}" target="_blank"><img src="{{ asset('images/magento_logo.png') }}" class="img-responsive" alt="|"> To Dashboard</a>
+                <a href="{{ $magento_admin_url }}" target="_blank"><img src="{{ secure_asset('images/magento_logo.png') }}" class="img-responsive" alt="|"> To Dashboard</a>
             </div>
         </div>
 
@@ -69,7 +69,7 @@
     </div>
     <div id="snackbar"></div>
 
-    <a href="#" class="cd-top" style="  background: teal url({{ asset('images/cd-top-arrow.svg') }}) no-repeat center 50%;">Top</a>
+    <a href="#" class="cd-top" style="  background: teal url({{ secure_asset('images/cd-top-arrow.svg') }}) no-repeat center 50%;">Top</a>
 
     @if(Session::has('returned_flash_message'))
         <script type="application/javascript">
@@ -84,12 +84,12 @@
 </body>
 <footer>
     <div class="pull-left">
-        <a href="https://www.stockly.ai" class="img-responsive" target="_blank"><img src="{{ asset('images/stockly_logo.png') }}" alt="Stockly"></a>
+        <a href="https://www.stockly.ai" class="img-responsive" target="_blank"><img src="{{ secure_asset('images/stockly_logo.png') }}" alt="Stockly"></a>
     </div>
     <div class="pull-right">Order Tracker, Powered by <a href="https://www.stockly.ai" target="_blank">Stockly</a>
         &copy; {{date('Y')}} <a id="the-developer-footer" href="https://github.com/donksly" title="Developer" target="_blank"><i class="fa fa-2x fa-github"></i></a></div>
 </footer>
-<script src="{{asset('js/app.js')}}"></script>
+<script src="{{secure_asset('js/app.js')}}"></script>
 </html>
 <script>
     function toast_message(message) {

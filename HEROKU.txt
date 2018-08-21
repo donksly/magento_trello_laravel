@@ -1,0 +1,5 @@
+https://stocklyretailer.herokuapp.com/ | https://git.heroku.com/stocklyretailer.git
+
+http://localhost:8000/
+http://localhost:8000/logs
+

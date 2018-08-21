@@ -104,7 +104,7 @@
                         <td>
                             <a href="{{ $single_order_url.$order->sales_order_id }}/" target="_blank" id="view-order-in-magento"
                                class="img-responsive">
-                                <img src="{{ asset('images/magento_logo.png') }}" alt="Go">
+                                <img src="{{ secure_asset('images/magento_logo.png') }}" alt="Go">
                             </a>
                         </td>
                     </tr>
@@ -156,7 +156,7 @@
         </table>
    </div>
     @endsection
-<script src="{{asset('js/app.js')}}"></script>
+<script src="{{secure_asset('js/app.js')}}"></script>
 <script>
     var duration = 60000;
 

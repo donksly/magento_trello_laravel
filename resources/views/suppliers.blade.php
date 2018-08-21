@@ -72,7 +72,7 @@
     </div><br>
     @endsection
 
-<script src="{{asset('js/app.js')}}"></script>
+<script src="{{secure_asset('js/app.js')}}"></script>
 <script>
     $(document).ready(function() {
         $('#link_all_suppliers').attr('class', 'active');

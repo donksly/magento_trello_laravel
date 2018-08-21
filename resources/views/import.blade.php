@@ -27,7 +27,7 @@
     </div><br><br>
     @endsection
 
-<script src="{{asset('js/app.js')}}"></script>
+<script src="{{secure_asset('js/app.js')}}"></script>
 <script>
     $(document).ready(function() {
         $('#link_import').attr('class', 'active');
