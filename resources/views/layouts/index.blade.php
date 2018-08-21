@@ -26,7 +26,7 @@
     <div class="header-nav-links-elements">
         <div class="header-nav-links">
             <div class="pull-left" id="nav-magento-dashboard">
-                <a href=""><img src="{{ asset('images/magento_logo.png') }}" class="img-responsive" alt="|"> To Dashboard</a>
+                <a href="{{ $magento_admin_url }}" target="_blank"><img src="{{ asset('images/magento_logo.png') }}" class="img-responsive" alt="|"> To Dashboard</a>
             </div>
         </div>
 

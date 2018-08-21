@@ -46,4 +46,8 @@ class SuppliersController extends Controller
     public function setMessageSession($message){
         Session::flash('returned_flash_message', $message);
     }
+
+    public function getSingleSupplierById($id){
+        return Suppliers::all()->where('id','=',$id)->first();
+    }
 }

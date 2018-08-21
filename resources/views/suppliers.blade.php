@@ -53,7 +53,7 @@
             </tr>
             </tfoot>
             <tbody>
-            @if($get_all_suppliers!=null)
+            @if($get_all_suppliers != null)
                 <?php
                 $i = 1;?>
                 @foreach($get_all_suppliers as $suppliers)

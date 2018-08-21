@@ -10,8 +10,5 @@ class Suppliers extends Model
 
     protected $fillable = ['name','url','email'];
 
-    public function ordersRelationship()
-    {
-        return $this->belongsTo(Orders::class,'supplier_id');
-    }
+
 }

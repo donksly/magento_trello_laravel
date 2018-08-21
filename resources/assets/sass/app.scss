@@ -81,6 +81,12 @@ body a:hover, body a:active{
   margin-top: .5%;
 }
 
+#nav-magento-dashboard a{
+  font-size: 16viewed-iconpx;
+  color: #F17B5B;
+  font-weight: bold;
+}
+
 .header-nav-links-elements #nav-elements ul{
   margin-right: 46px;
   margin-top: 4%;
@@ -203,6 +209,7 @@ body a:hover, body a:active{
 
 #viewed-icon{
   color: cornflowerblue;
+  font-size: 7px;
 }
 
 #import-json-to-orders textarea{
@@ -210,6 +217,13 @@ body a:hover, body a:active{
   width: 100%;
 }
 
+#closed_order_icon{
+  color: darkgrey;
+}
+
+.modal-view-order-details h6{
+  margin-bottom: 2%;
+}
 
 
 

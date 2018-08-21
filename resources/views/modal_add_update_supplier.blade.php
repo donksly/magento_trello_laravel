@@ -18,8 +18,13 @@
             </label>
             <select name="modal_new_supplier" id="modal_new_supplier" class="form-control" required>
                 <option value="" selected disabled>Select</option>
-                <option value="1">A</option>
-                <option value="2">B</option>
+                @if($all_orders != null)
+                    @foreach($all_orders as $single_orders)
+                        <option value="{{ $single_orders->id }}">{{ ucwords($single_orders->name) }}</option>
+                        @endforeach
+                    @else
+                    <option value="" selected disabled>Add suppliers first!</option>
+                @endif
             </select><br>
             <input type="text" name="order_id" value="{{ $request_values[1] }}" hidden>
             <button class="btn btn-primary" type="submit">

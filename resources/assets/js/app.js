@@ -79,6 +79,17 @@ $(document).ready(function(){
         var order_id = $(this).attr('data-order-id');
         var order_table_id = $(this).attr('data-order-table-id');
         var order_has_violations = $(this).attr('data-has-violations');
+        var long_order_id = $(this).attr('data-long-order-id');
+        var purchase_point = $(this).attr('data-purchase-point');
+        var purchase_date = $(this).attr('data-purchase-date');
+        var customer_name = $(this).attr('data-customer-name');
+        var customer_email = $(this).attr('data-customer-email');
+        var currency = $(this).attr('data-currency');
+        var grand_total = $(this).attr('data-grand-total');
+        var state = $(this).attr('data-current-state');
+        var state_color = $(this).attr('data-current-state-color');
+        var supplier_id = $(this).attr('data-supplier-id');
+
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
         $.ajax({
@@ -88,7 +99,18 @@ $(document).ready(function(){
                 _token: CSRF_TOKEN,
                 order_id: order_id,
                 order_table_id: order_table_id,
-                order_has_violations: order_has_violations
+                order_has_violations: order_has_violations,
+                long_order_id: long_order_id,
+                purchase_point: purchase_point,
+                purchase_date: purchase_date,
+                customer_name: customer_name,
+                customer_email: customer_email,
+                grand_total: grand_total,
+                state: state,
+                state_color: state_color,
+                supplier_id: supplier_id,
+                currency: currency
+
             }, success: function (d) {
                 $('.modal-content').html(d);
             }, error: function(e){
