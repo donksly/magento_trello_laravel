@@ -6,3 +6,16 @@ https://stocklyretailer.herokuapp.com//logs
 http://localhost:8000/
 http://localhost:8000/logs
 
+-------------------------------------------
+
+
+
+git add .
+
+
+git commit -m "set font awesome for live"
+
+		>heroku run php artisan migrate
+
+git push https://git.heroku.com/stocklyretailer.git master
+
