@@ -57,8 +57,7 @@ class OrdersController extends Controller
                 $message = "Your order has been accepted, your order number is #".
                     $helpers->formatOrderNumberForView($single_order[$i]->entity_id);
 
-                /**uncomment in live environment**/
-                //$helpers->sendEmail($client_mail, 'E-Retailer - Order Accepted', $message);
+                $helpers->sendEmail($client_mail, 'E-Retailer - Order Accepted', $message);
 
             }
 
@@ -171,8 +170,8 @@ class OrdersController extends Controller
         $supplier_email = $supplier->getSingleSupplierById($supplier_id);
         $message = "You have a new order #".$helpers->formatOrderNumberForView($order_id);
 
-        /**uncomment in live environment**/
-        //$helpers->sendEmail($supplier_email->email, 'E-Retailer - New supplier', $message);
+
+        $helpers->sendEmail($supplier_email->email, 'E-Retailer - New supplier', $message);
 
         $flash_message = $helpers->setMessageSession("Supplier successfully added to order.");
         return back();
@@ -186,8 +185,8 @@ class OrdersController extends Controller
         $supplier_email = $supplier->getSingleSupplierById($supplier_id);
         $message = "You have an article return request for #".$helpers->formatOrderNumberForView($order_id);
 
-        /**uncomment in live environment**/
-        //$helpers->sendEmail($supplier_email->email, 'E-Retailer - Return Article Request', $message);
+
+        $helpers->sendEmail($supplier_email->email, 'E-Retailer - Return Article Request', $message);
 
         $flash_message = $helpers->setMessageSession("Return request sent successfully!");
         return back();
@@ -215,8 +214,7 @@ class OrdersController extends Controller
             $supplier_email = $supplier->getSingleSupplierById($supplier_id);
             $message = "This order #".$helpers->formatOrderNumberForView($order_id)." had evaluation errors and was fixed!";
 
-            /**uncomment in live environment**/
-            //$helpers->sendEmail($supplier_email->email, 'E-Retailer - Impossible Evaluation', $message);
+            $helpers->sendEmail($supplier_email->email, 'E-Retailer - Impossible Evaluation', $message);
 
         }else{
             $find_order->update(['updated_at' => null, 'error_log' => 'ERROR: Impossible evaluation detected!']);
