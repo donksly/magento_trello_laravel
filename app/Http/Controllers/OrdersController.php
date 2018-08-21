@@ -14,6 +14,7 @@ class OrdersController extends Controller
 {
     protected $magento_admin_url = 'http://127.0.0.1/Magento-CE-2.2.5/admin_a27nw8/';
     protected $single_order_url = 'http://127.0.0.1/Magento-CE-2.2.5/admin_a27nw8/sales/order/view/order_id/';
+    protected $er_admin_email = 'er_admin@stockly.ai';
     protected $state = array("CREATED", "SHIPPED", "DELIVERED", "CLOSED", "ASKED RETURN", "RETURNED", "PROBLEMATIC");
     protected $action_keys = array(1,2,3,4,5,6,7);
     protected $colors = array("cadetblue", "cornflowerblue", "#007bff", "lightgreen", "lightpink", "deeppink", "firebrick");
@@ -32,7 +33,7 @@ class OrdersController extends Controller
         return view('import');
     }
 
-    public function checkNewOrdersMagento(){
+    public function checkNewOrdersMagento(Helpers $helpers){
         $get_all_orders = $this->fetchAllOrdersFromMagento();
         $unseen_count = 0;
 
@@ -51,6 +52,14 @@ class OrdersController extends Controller
                     'status' => 1,
                     'error_log' => ''
                 ]);
+
+                $client_mail = $this->fetchSingleOrder($single_order[$i])->customer_email;
+                $message = "Your order has been accepted, your order number is #".
+                    $helpers->formatOrderNumberForView($single_order[$i]->entity_id);
+
+                /**uncomment in live environment**/
+                //$helpers->sendEmail($client_mail, 'E-Retailer - Order Accepted', $message);
+
             }
 
             $all_unseen_updates = Orders::all()->where('viewed','=',0)->groupBy('id')->count();
@@ -191,7 +200,7 @@ class OrdersController extends Controller
 
         //////////////////////ensure you've a method to only pass NON-CLOSED ITEMS through this filter
 
-        $ok_to_update = $this->checkImpossibleEval($order_id, $request->new_state);
+        $ok_to_update = $this->checkImpossibleEvaluationAlgorithm($order_id, $request->new_state);
         $find_order = Orders::all()->where('id','=',$order_id)->first();
 
         if($ok_to_update == 1){
@@ -218,7 +227,7 @@ class OrdersController extends Controller
         return $ok_to_update;
     }
 
-    public function checkImpossibleEval($order_id, $new_state){
+    public function checkImpossibleEvaluationAlgorithm($order_id, $new_state){
         $get_order_details = Orders::all()->where('id','=',$order_id)->first();
         $order_previous_state = $get_order_details->next_state;
         $order_next_state = $new_state;
