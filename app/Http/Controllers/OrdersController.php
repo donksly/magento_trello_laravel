@@ -30,7 +30,7 @@ class OrdersController extends Controller
     }
 
     public function indexImport(){
-        return view('import');
+        return view('import')->with('magento_admin_url', $this->magento_admin_url);
     }
 
     public function checkNewOrdersMagento(Helpers $helpers){

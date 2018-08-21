@@ -9,9 +9,11 @@ use Illuminate\Support\Facades\Session;
 
 class SuppliersController extends Controller
 {
+    protected $magento_admin_url = 'http://127.0.0.1/Magento-CE-2.2.5/admin_a27nw8/';
     public function index(Helpers $helper){
         $get_all_suppliers = Suppliers::all()->sortBy('name');
-        return view('suppliers', compact('get_all_suppliers'))->with('helper', $helper);
+        return view('suppliers', compact('get_all_suppliers'))->with('helper', $helper)
+            ->with('magento_admin_url', $this->magento_admin_url);
     }
 
     public function createSuppliers(Request $request){
