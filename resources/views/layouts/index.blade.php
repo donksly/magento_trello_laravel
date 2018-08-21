@@ -8,7 +8,7 @@
     <meta name="author" content="Kepha Okello">
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" href="{{ secure_asset('images/eretailer_logo.png') }}">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
 </head>
 <body>
