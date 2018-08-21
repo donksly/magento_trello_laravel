@@ -150,7 +150,7 @@ class SalesOrder extends Migration
             $table->string('coupon_rule_name', 50);
             $table->string('paypal_ipn_customer_notified', 50);
             $table->string('gift_message_id', 50);
-            $table->timestamps(, 50);
+            $table->timestamps();
         }, 50);
     }
 
