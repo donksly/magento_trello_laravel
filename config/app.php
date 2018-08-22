@@ -215,7 +215,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         /**laravel trello and oauth**/
-        'Trello' => Gregoriohc\LaravelTrello\Facades\Wrapper::class,
+        'Trellos' => Gregoriohc\LaravelTrello\Facades\Wrapper::class,
+        /**laravel trello and oauth socialite**/
+        'Trello' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 
