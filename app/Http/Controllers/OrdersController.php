@@ -265,7 +265,7 @@ class OrdersController extends Controller
 
 
     public function fetchTrelloToken(){
-        return Socialite::with('DTrello')->redirect();
+        return Socialite::with('trello')->redirect();
     }
 
 
