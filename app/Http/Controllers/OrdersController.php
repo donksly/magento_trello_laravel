@@ -14,6 +14,9 @@ use Laravel\Socialite\Facades\Socialite;
 use League\OAuth1\Client\Server\Trello;
 use SocialiteProviders\Manager\OAuth2\AbstractProvider;
 use League\OAuth1\Client\Server\Server;
+use Trello\Api\Board\Cardlists;
+use Trello\Api\Cardlist\Cards;
+use Trello\Api\Member\Boards;
 use Trello\Client;
 
 class OrdersController extends Controller
@@ -308,8 +311,35 @@ class OrdersController extends Controller
         $token = Session::get('oauth_token');
         $client->authenticate($this->trello_identifier, $token, Client::AUTH_URL_CLIENT_ID);
 
-        $boards = $client->api('members')->boards()->all();
-        return $boards;
+        $boardID = "";
+        $listID = "";
+        $boards = $client->api('member')->boards()->all("me", array());
+        foreach ($boards as $board) {
+            // Insert board to DB
+            $boardID = $board['id'];
+            $board_name = $board['name'];
+            $user_id = "djf7uegesfjbfhgxj";
+            Boards::insertBoard($boardID, $board_name, $user_id);
+            $lists = $client->api('boards')->lists()->all("{$boardID}", array());
+            foreach ($lists as $list) {
+                // Insert list to DB
+                $listID = $list['id'];
+                $name = $list['name'];
+                Cards::insertList($listID, $name, $boardID);
+                $cards = $client->api('lists')->cards()->all("{$listID}", array());
+                foreach ($cards as $card) {
+                    // Insert card to DB
+                    $card_id = $card['id'];
+                    $card_name = $card['name'];
+                    $card_des = $card['desc'];
+                    $card_due = $card['due'];
+                    Cards::insertCard($card_id, $card_name, $card_des, $card_due, $listID);
+                }
+            }
+        }
+        // // Get list boards
+        // $boards = $client->api('member')->boards()->all("me", array());
+    return $this->render("getboard", array('boards' => $boards));
     }
 
 
