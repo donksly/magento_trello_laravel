@@ -24,3 +24,8 @@ git push https://git.heroku.com/stocklyretailer.git master
 
 
 >heroku run php artisan config:cache
+
+>heroku run composer dump-autoload
+
+>heroku run php artisan cache:clear
+
