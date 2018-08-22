@@ -364,17 +364,17 @@ class OrdersController extends Controller
     //return $this->render("getboard", array('boards' => $boards));
     //}
 
-    public function insertToBoard($supplier_id){
+    public function insertToBoard($supplier_id)
+    {
         $client = new Client();
         $client->authenticate('api_key', 'token', Client::AUTH_URL_CLIENT_ID);
 
         $manager = new Manager($client);
 
-        $card = $manager->getList($supplier_id);
+        $card = $manager->getList($supplier_id)->getCards();
 
-        $card
-            ->setName('Test card')
-            ->save();
+        return $card;
+
     }
 
 }
