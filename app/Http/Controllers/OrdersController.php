@@ -275,10 +275,10 @@ class OrdersController extends Controller
         $response = file_get_contents('php://input');
         $user = Socialite::driver('trello')->user();
         $accessTokenResponseBody = $user->accessTokenResponseBody;
-        Log::info($accessTokenResponseBody);
+        /*Log::info($accessTokenResponseBody);*/
 
-        Log::info($_GET['oauth_token']);
-        Log::info($_GET['oauth_verifier']);
+        /*Log::info($_GET['oauth_token']);
+        Log::info($_GET['oauth_verifier']);*/
 
         /*if (isset($_GET['oauth_token']) && isset($_GET['oauth_verifier'])) {
             // Retrieve the temporary credentials we saved before
@@ -291,6 +291,7 @@ class OrdersController extends Controller
 
 
         Log::info('Auth Token: '.$accessTokenResponseBody['oauth_token']);
+        Log::info('Auth Token Secret: '.$accessTokenResponseBody['oauth_token_secret']);
     }
 
 
