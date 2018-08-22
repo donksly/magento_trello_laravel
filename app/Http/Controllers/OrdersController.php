@@ -314,8 +314,10 @@ class OrdersController extends Controller
         $boardID = "";
         $listID = "";
         $boards = $client->api('member')->boards()->all("me", array());
-        /*foreach ($boards as $board) {
-            // Insert board to DB
+        foreach ($boards as $board) {
+
+            Log::info($board);
+            /*// Insert board to DB
             $boardID = $board['id'];
             $board_name = $board['name'];
             $user_id = "djf7uegesfjbfhgxj";
@@ -334,13 +336,13 @@ class OrdersController extends Controller
                     $card_des = $card['desc'];
                     $card_due = $card['due'];
                     Cards::insertCard($card_id, $card_name, $card_des, $card_due, $listID);
-                }
+                }*/
             }
-        }*/
+        }
         // // Get list boards
         // $boards = $client->api('member')->boards()->all("me", array());
-    return $this->render("getboard", array('boards' => $boards));
-    }
+    //return $this->render("getboard", array('boards' => $boards));
+    //}
 
 
 
