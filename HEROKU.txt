@@ -22,3 +22,5 @@ git commit -m "live mail test 3"
 
 git push https://git.heroku.com/stocklyretailer.git master
 
+
+>heroku run php artisan config:cache
