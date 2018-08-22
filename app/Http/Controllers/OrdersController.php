@@ -272,7 +272,7 @@ class OrdersController extends Controller
             'expiration' => 'never',
             'scope' => 'read,write'
         ));
-        return json_encode($server);
+        return sizeof($server);
     }
 
 
