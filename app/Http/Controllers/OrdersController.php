@@ -6,7 +6,7 @@ use App\Helpers;
 use App\MagentoSalesOrder;
 use App\Orders;
 use App\Suppliers;
-use Illuminate\Database\Capsule\Manager;
+//use Illuminate\Database\Capsule\Manager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
@@ -19,6 +19,7 @@ use Trello\Api\Board\Cardlists;
 use Trello\Api\Cardlist\Cards;
 use Trello\Api\Member\Boards;
 use Trello\Client;
+use Trello\Manager;
 
 class OrdersController extends Controller
 {
@@ -348,10 +349,10 @@ class OrdersController extends Controller
                 }*/
             }
 
-        $manager = new \Trello\Manager($client);
+        $manager = new Manager($client);
 
-        $card = $manager->getCard('5b76d7a776d0da4c6c40fc54');
-
+        $card = $manager->getCard($this->supplier_a_id);
+        Log::info($card);
         $card
             ->setName('Test card')
             ->setDescription('Test description')
