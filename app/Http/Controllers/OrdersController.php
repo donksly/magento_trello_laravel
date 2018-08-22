@@ -282,6 +282,8 @@ class OrdersController extends Controller
         // Second part of OAuth 1.0 authentication is to redirect the
         // resource owner to the login screen on the server.
         $server->authorize($temporaryCredentials);
+
+        return $_SESSION['temporary_credentials_oauth'];
     }
 
 
