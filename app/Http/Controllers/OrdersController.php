@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 use League\OAuth1\Client\Server\Trello;
+use SocialiteProviders\Manager\OAuth2\AbstractProvider;
+use League\OAuth1\Client\Server\Server;
 
 class OrdersController extends Controller
 {
@@ -280,7 +282,7 @@ class OrdersController extends Controller
             $temporaryCredentials = unserialize(Session::get('temporary_credentials'));
 
             // We will now retrieve token credentials from the server
-            $tokenCredentials = $server->getTokenCredentials($temporaryCredentials, $_GET['oauth_token'], $_GET['oauth_verifier']);
+            $tokenCredentials = Server::class->getTokenCredentials($temporaryCredentials, $_GET['oauth_token'], $_GET['oauth_verifier']);
         }
         return $tokenCredentials;
     }
