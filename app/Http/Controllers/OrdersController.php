@@ -285,7 +285,7 @@ class OrdersController extends Controller
             $temporaryCredentials = unserialize(Session::get('temporary_credentials'));
 
             // We will now retrieve token credentials from the server
-            $tokenCredentials = $server->getTokenCredentials($temporaryCredentials, $_GET['oauth_token'], $_GET['oauth_verifier']);
+            //$tokenCredentials = $server->getTokenCredentials($temporaryCredentials, $_GET['oauth_token'], $_GET['oauth_verifier']);
         }
         //return $tokenCredentials;
 
