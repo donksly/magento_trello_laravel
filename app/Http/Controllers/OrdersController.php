@@ -293,7 +293,7 @@ class OrdersController extends Controller
         Log::info('Auth Token: '.$accessTokenResponseBody['oauth_token']);
         Log::info('Auth Token Secret: '.$accessTokenResponseBody['oauth_token_secret']);
 
-        $auth_token_session = Session::put('oauth_token',$accessTokenResponseBody['oauth_token']);
+        Session::put('oauth_token',$accessTokenResponseBody['oauth_token']);
 
         Log::info($this->trelloFetchAllBoards());
 
