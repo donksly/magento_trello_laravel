@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use SocialiteProviders\Manager\SocialiteWasCalled;
+use SocialiteProviders\Trello\TrelloExtendSocialite;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,7 +19,7 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\EventListener',
         ],
         SocialiteWasCalled::class => [
-            'SocialiteProviders\\Trello\\TrelloExtendSocialite@handle',
+            TrelloExtendSocialite::class,
         ],
     ];
 
