@@ -15,7 +15,6 @@ use League\OAuth1\Client\Server\Trello;
 use SocialiteProviders\Manager\OAuth2\AbstractProvider;
 use League\OAuth1\Client\Server\Server;
 use Trello\Client;
-use Trello\Manager;
 
 class OrdersController extends Controller
 {
@@ -309,17 +308,8 @@ class OrdersController extends Controller
         $token = Session::get('oauth_token');
         $client->authenticate($this->trello_identifier, $token, Client::AUTH_URL_CLIENT_ID);
 
-        //$boards = $client->api('member')->boards()->all();
-
-        $manager = new Manager($client);
-
-        $card = $manager->getCard('5b76d6648f67ee4eb45f7343');
-
-        $card
-            ->setName('Test card')
-            ->setDescription('Test description')
-            ->save();
-        return $card;
+        $boards = $client->api('member')->boards()->all();
+        return $boards;
     }
 
 
