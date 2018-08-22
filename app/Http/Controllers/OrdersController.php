@@ -289,8 +289,8 @@ class OrdersController extends Controller
         }*/
         //return $tokenCredentials;
 
-        
-        Log::info('Auth Token: '.json_decode($accessTokenResponseBody)->oauth_token);
+
+        Log::info('Auth Token: '.$accessTokenResponseBody['oauth_token']);
     }
 
 
