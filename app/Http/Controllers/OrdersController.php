@@ -347,14 +347,16 @@ class OrdersController extends Controller
                     Cards::insertCard($card_id, $card_name, $card_des, $card_due, $listID);
                 }*/
             }
+
+        //////////////////Insert
         $manager = new Manager($client);
         $card = $manager->getCard();
 
         $card
-            ->setName('Test card')
+            ->setName('Test000005')
             // Go to you board in browser add ".json" at the end of the URL and search for the ID of the list you wont...
             ->setListId('5b76d7a80fb3d06141dcc0d6')
-            ->setDescription('Test description')
+            ->setDescription('Main Store')
             ->save();
         return $card;
 
