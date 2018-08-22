@@ -1,7 +1,9 @@
 https://stocklyretailer.herokuapp.com/ | https://git.heroku.com/stocklyretailer.git
 
 https://stocklyretailer.herokuapp.com/
-https://stocklyretailer.herokuapp.com//logs
+https://stocklyretailer.herokuapp.com/logs
+
+http://stocklyretailer.herokuapp.com/api/trellotoken
 
 http://localhost:8000/
 http://localhost:8000/logs
