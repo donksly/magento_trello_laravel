@@ -9,6 +9,7 @@ use App\Suppliers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
+use Laravel\Socialite\Facades\Socialite;
 use League\OAuth1\Client\Server\Trello;
 
 class OrdersController extends Controller
@@ -264,26 +265,7 @@ class OrdersController extends Controller
 
 
     public function fetchTrelloToken(){
-        $server =  new Trello(array(
-            'identifier' => $this->trello_identifier,
-            'secret' => $this->trello_secret,
-            'callback_uri' => $this->live_url_api.'trellotoken',
-            'name' => 'your-application-name', // optional, defaults to null
-            'expiration' => 'never',
-            'scope' => 'read,write'
-        ));
-        // Retrieve temporary credentials
-        $temporaryCredentials = $server->getTemporaryCredentials();
-
-        // Store credentials in the session, we'll need them later
-        $_SESSION['temporary_credentials_oauth'] = serialize($temporaryCredentials);
-        session_write_close();
-
-        // Second part of OAuth 1.0 authentication is to redirect the
-        // resource owner to the login screen on the server.
-        $server->authorize($temporaryCredentials);
-
-        return $_SESSION['temporary_credentials_oauth'];
+        return Socialite::with('Trello')->redirect();
     }
 
 

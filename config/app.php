@@ -164,6 +164,8 @@ return [
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         /**laravel trello and oauth**/
         Gregoriohc\LaravelTrello\TrelloServiceProvider::class,
+        /**Socialite providers - trello**/
+        \SocialiteProviders\Manager\ServiceProvider::class,
     ],
 
     /*
