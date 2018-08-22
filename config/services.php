@@ -41,5 +41,5 @@ return [
         'redirect' => env('TRELLO_REDIRECT_URI', 'https://stocklyretailer.herokuapp.com/api/trellotoken')
     ],
 
-    
+
 ];
