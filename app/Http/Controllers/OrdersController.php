@@ -322,7 +322,7 @@ class OrdersController extends Controller
         Log::info('Supplier A'.json_encode($boards[0])); ////////////BOARD A
         Log::info('Supplier B'.json_encode($boards[1])); ////////////BOARD B
 
-        $this->insertToBoard($this->supplier_a_id);
+        Log::info($this->insertToBoard($this->supplier_a_id));
         foreach ($boards as $board) {
 
             Log::info(json_encode($board));
@@ -365,6 +365,8 @@ class OrdersController extends Controller
             ->setName('Test card')
             ->setDescription('Test description')
             ->save();
+        return $card;
     }
+
 
 }
