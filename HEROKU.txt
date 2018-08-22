@@ -5,6 +5,8 @@ https://stocklyretailer.herokuapp.com/logs
 
 http://stocklyretailer.herokuapp.com/api/trellotoken
 
+http://stocklyretailer.herokuapp.com/api/trellotokencallback   (//dont add)
+
 http://localhost:8000/
 http://localhost:8000/logs
 

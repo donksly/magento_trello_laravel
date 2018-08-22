@@ -9,6 +9,7 @@ use App\Suppliers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 use League\OAuth1\Client\Server\Trello;
 
@@ -276,7 +277,7 @@ class OrdersController extends Controller
 
         if (isset($_GET['oauth_token']) && isset($_GET['oauth_verifier'])) {
             // Retrieve the temporary credentials we saved before
-            $temporaryCredentials = unserialize($_SESSION['temporary_credentials']);
+            $temporaryCredentials = unserialize(Session::get('temporary_credentials'));
 
             // We will now retrieve token credentials from the server
             $tokenCredentials = $server->getTokenCredentials($temporaryCredentials, $_GET['oauth_token'], $_GET['oauth_verifier']);
