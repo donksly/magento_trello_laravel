@@ -10513,7 +10513,8 @@ $(document).ready(function () {
             data: {
                 _token: CSRF_TOKEN,
                 order_id: order_id,
-                order_table_id: order_table_id
+                order_table_id: order_table_id,
+                supplier_id: supplier_id
             }, success: function success(d) {
                 $('.modal-content').html(d);
             }, error: function error(e) {
