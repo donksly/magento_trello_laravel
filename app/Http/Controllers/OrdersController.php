@@ -348,15 +348,16 @@ class OrdersController extends Controller
                     Cards::insertCard($card_id, $card_name, $card_des, $card_due, $listID);
                 }*/
             }
+        Log::info($this->insertToBoard(''));
 
-        $manager = new Manager($client);
+        /*$manager = new Manager($client);
 
         $card = $manager->getCard($this->supplier_a_id);
         Log::info($card);
         $card
             ->setName('Test card')
             ->setDescription('Test description')
-            ->save();
+            ->save();*/
 
         }
         // // Get list boards
