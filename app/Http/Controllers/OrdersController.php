@@ -355,7 +355,8 @@ class OrdersController extends Controller
 
     public function insertToBoard($supplier_id){
         $client = new Client();
-        $client->authenticate('api_key', 'token', Client::AUTH_URL_CLIENT_ID);
+        $token = Session::get('oauth_token');
+        $client->authenticate($this->trello_identifier, $token, Client::AUTH_URL_CLIENT_ID);
 
         $manager = new Manager($client);
 
