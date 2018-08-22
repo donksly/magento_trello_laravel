@@ -370,9 +370,14 @@ class OrdersController extends Controller
         $client->authenticate('api_key', 'token', Client::AUTH_URL_CLIENT_ID);
 
         $manager = new Manager($client);
+        $card = $manager->getCard();
 
-        $card = $manager->getList()->getCards();
-
+        $card
+            ->setName('Test card')
+            // Go to you board in browser add ".json" at the end of the URL and search for the ID of the list you wont...
+            ->setListId('5a4e2ab9ed0724e270f109d8')
+            ->setDescription('Test description')
+            ->save();
         return $card;
 
     }
