@@ -271,7 +271,9 @@ class OrdersController extends Controller
 
     public function fetchTrelloTokenCallback(Request $request){
         $response = file_get_contents('php://input');
-        Log::info($response);
+        $user = Socialite::driver('trello')->user();
+        $accessTokenResponseBody = $user->accessTokenResponseBody;
+        Log::info($accessTokenResponseBody);
     }
 
 
