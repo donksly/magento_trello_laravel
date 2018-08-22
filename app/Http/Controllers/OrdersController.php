@@ -271,7 +271,7 @@ class OrdersController extends Controller
         return Socialite::with('trello')->redirect();
     }
 
-    public function fetchTrelloTokenCallback(Request $request){
+    public function fetchTrelloTokenCallback(Request $request, Server $server){
         $response = file_get_contents('php://input');
         $user = Socialite::driver('trello')->user();
         $accessTokenResponseBody = $user->accessTokenResponseBody;
@@ -282,7 +282,7 @@ class OrdersController extends Controller
             $temporaryCredentials = unserialize(Session::get('temporary_credentials'));
 
             // We will now retrieve token credentials from the server
-            $tokenCredentials = Server::class->getTokenCredentials($temporaryCredentials, $_GET['oauth_token'], $_GET['oauth_verifier']);
+            $tokenCredentials = $server->getTokenCredentials($temporaryCredentials, $_GET['oauth_token'], $_GET['oauth_verifier']);
         }
         return $tokenCredentials;
     }
