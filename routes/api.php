@@ -17,7 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('')->group(function () {
-    Route::any('/trellotokens', 'OrdersController@fetchTrelloToken');
-    Route::get('/trellotoken', 'OrdersController@fetchTrelloToken');
+Route::prefix('')->group(['middleware' => ['web']], function () {
+    Route::any('/trellotoken', 'OrdersController@fetchTrelloToken');
 });
