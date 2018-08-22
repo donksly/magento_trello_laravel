@@ -295,7 +295,7 @@ class OrdersController extends Controller
 
         Session::put('oauth_token',$accessTokenResponseBody['oauth_token']);
 
-        Log::info($this->trelloFetchAllBoards());
+        //Log::info($this->trelloFetchAllBoards());
 
         return $this->trelloFetchAllBoards();
     }
