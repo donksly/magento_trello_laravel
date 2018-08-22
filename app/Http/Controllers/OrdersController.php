@@ -280,13 +280,13 @@ class OrdersController extends Controller
         /*Log::info($_GET['oauth_token']);
         Log::info($_GET['oauth_verifier']);*/
 
-        /*if (isset($_GET['oauth_token']) && isset($_GET['oauth_verifier'])) {
+        if (isset($_GET['oauth_token']) && isset($_GET['oauth_verifier'])) {
             // Retrieve the temporary credentials we saved before
             $temporaryCredentials = unserialize(Session::get('temporary_credentials'));
 
             // We will now retrieve token credentials from the server
             $tokenCredentials = $server->getTokenCredentials($temporaryCredentials, $_GET['oauth_token'], $_GET['oauth_verifier']);
-        }*/
+        }
         //return $tokenCredentials;
 
 
@@ -304,6 +304,7 @@ class OrdersController extends Controller
 
     public function trelloFetchAllBoards(){
         $client = new Client();
+        Log::info('Auth Token Trello: '.Session::get('oauth_token'));
         $token = Session::get('oauth_token');
         $client->authenticate($this->trello_identifier, $token, Client::AUTH_URL_CLIENT_ID);
 
