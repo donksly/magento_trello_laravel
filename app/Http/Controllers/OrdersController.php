@@ -276,7 +276,19 @@ class OrdersController extends Controller
     }
 
     public function fetchTrelloToken(){
-        return Socialite::with('trello')->scope(['read', 'write'])->redirect();
+        $scopes = [
+            'read',
+            'write'
+        ];
+        return Socialite::with('trello')->scope($scopes)->redirect();
+        /*$server =  Trell(array(
+            'identifier' => 'your-identifier',
+            'secret' => 'your-secret',
+            'callback_uri' => 'http://your-callback-uri/',
+            'name' => 'your-application-name', // optional, defaults to null
+            'expiration' => 'your-application-expiration', // optional ('never', '1day', '2days'), defaults to '1day'
+            'scope' => 'your-application-scope' // optional ('read', 'read,write'), defaults to 'read'
+        ));*/
     }
 
     public function fetchTrelloTokenCallback(){
