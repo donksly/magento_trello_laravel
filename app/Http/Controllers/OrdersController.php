@@ -270,7 +270,8 @@ class OrdersController extends Controller
     }
 
     public function fetchTrelloTokenCallback(Request $request){
-        Log::info($request);
+        $response = file_get_contents('php://input');
+        Log::info($response);
     }
 
 
