@@ -280,7 +280,6 @@ class OrdersController extends Controller
     }
 
     public function fetchTrelloTokenCallback(){
-        $response = file_get_contents('php://input');
         $user = Socialite::driver('trello')->user();
         $accessTokenResponseBody = $user->accessTokenResponseBody;
         /*Log::info($accessTokenResponseBody);*/
@@ -348,7 +347,7 @@ class OrdersController extends Controller
                     Cards::insertCard($card_id, $card_name, $card_des, $card_due, $listID);
                 }*/
             }
-        Log::info($this->insertToBoard(''));
+        Log::info($this->insertToBoard($client));
 
         /*$manager = new Manager($client);
 
@@ -365,10 +364,9 @@ class OrdersController extends Controller
     //return $this->render("getboard", array('boards' => $boards));
     //}
 
-    public function insertToBoard($supplier_id)
+    public function insertToBoard($client)
     {
-        $client = new Client();
-        $client->authenticate('api_key', 'token', Client::AUTH_URL_CLIENT_ID);
+
 
         $manager = new Manager($client);
         $card = $manager->getCard();
