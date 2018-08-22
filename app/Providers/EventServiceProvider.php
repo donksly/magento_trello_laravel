@@ -18,7 +18,7 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\EventListener',
         ],
         SocialiteWasCalled::class => [
-            'SocialiteProviders\Trello\TrelloExtendSocialite@handle',
+            'SocialiteProviders\\Trello\\TrelloExtendSocialite@handle',
         ],
     ];
 
