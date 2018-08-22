@@ -165,7 +165,6 @@ return [
         /**laravel trello and oauth**/
         Gregoriohc\LaravelTrello\TrelloServiceProvider::class,
         /**Socialite providers - trello**/
-        Laravel\Socialite\SocialiteServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class,
     ],
 
