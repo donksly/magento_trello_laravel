@@ -11,8 +11,8 @@ http://localhost:8000/
 http://localhost:8000/logs
 
 -------------------------------------------
-
-
+http://stocklyretailer.herokuapp.com/api/trellotokencallback?oauth_token=5d5c2d4dd3e84494915e19c75af0cf11&oauth_verifier=eb246852206e7a9e4ba2f8f0d2f40203
+---------------------------------------------------------------------------------
 
 git add .
 
