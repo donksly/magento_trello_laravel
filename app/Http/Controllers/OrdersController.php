@@ -14,6 +14,7 @@ use Laravel\Socialite\Facades\Socialite;
 use League\OAuth1\Client\Server\Trello;
 use SocialiteProviders\Manager\OAuth2\AbstractProvider;
 use League\OAuth1\Client\Server\Server;
+use Trello\Client;
 
 class OrdersController extends Controller
 {
@@ -23,6 +24,12 @@ class OrdersController extends Controller
     protected $state = array("CREATED", "SHIPPED", "DELIVERED", "CLOSED", "ASKED RETURN", "RETURNED", "PROBLEMATIC");
     protected $action_keys = array(1,2,3,4,5,6,7);
     protected $colors = array("cadetblue", "cornflowerblue", "#007bff", "lightgreen", "lightpink", "deeppink", "firebrick");
+
+    protected $live_url = 'https://stocklyretailer.herokuapp.com/';
+    protected $live_url_api = 'https://stocklyretailer.herokuapp.com/api/';
+    protected $trello_identifier = '4ff88df6485dd26e226982183a361880';
+    protected $trello_secret = '7c23575bd820e6716e28bf3db142929d48a056caac35f38bb03f21c2664b2752';
+    protected $trello_application_name = 'StocklyERetailer';
 
     protected $magento_state = array(1 => "new","processing","closed");
     protected $magento_status = array(1 => "pending","processing","closed");
@@ -260,18 +267,11 @@ class OrdersController extends Controller
         return $update_ok;
     }
 
-    protected $live_url = 'https://stocklyretailer.herokuapp.com/';
-    protected $live_url_api = 'https://stocklyretailer.herokuapp.com/api/';
-    protected $trello_identifier = '4ff88df6485dd26e226982183a361880';
-    protected $trello_secret = '7c23575bd820e6716e28bf3db142929d48a056caac35f38bb03f21c2664b2752';
-    protected $trello_application_name = 'StocklyERetailer';
-
-
     public function fetchTrelloToken(){
         return Socialite::with('trello')->redirect();
     }
 
-    public function fetchTrelloTokenCallback(Request $request){
+    public function fetchTrelloTokenCallback(){
         $response = file_get_contents('php://input');
         $user = Socialite::driver('trello')->user();
         $accessTokenResponseBody = $user->accessTokenResponseBody;
@@ -292,6 +292,23 @@ class OrdersController extends Controller
 
         Log::info('Auth Token: '.$accessTokenResponseBody['oauth_token']);
         Log::info('Auth Token Secret: '.$accessTokenResponseBody['oauth_token_secret']);
+
+        $auth_token_session = Session::put('oauth_token',$accessTokenResponseBody['oauth_token']);
+
+        Log::info($this->trelloFetchAllBoards());
+
+        return $this->trelloFetchAllBoards();
+    }
+
+
+
+    public function trelloFetchAllBoards(){
+        $client = new Client();
+        $token = Session::get('oauth_token');
+        $client->authenticate($this->trello_identifier, $token, Client::AUTH_URL_CLIENT_ID);
+
+        $boards = $client->api('member')->boards()->all();
+        return $boards;
     }
 
 
