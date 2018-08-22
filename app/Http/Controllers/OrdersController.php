@@ -314,6 +314,11 @@ class OrdersController extends Controller
         $manager = new Manager($client);
 
         $card = $manager->getCard('5b76d6648f67ee4eb45f7343');
+
+        $card
+            ->setName('Test card')
+            ->setDescription('Test description')
+            ->save();
         return $card;
     }
 
