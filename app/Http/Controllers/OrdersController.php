@@ -376,7 +376,7 @@ class OrdersController extends Controller
         $card
             ->setName('Test card')
             // Go to you board in browser add ".json" at the end of the URL and search for the ID of the list you wont...
-            ->setListId('5a4e2ab9ed0724e270f109d8')
+            ->setListId('5b76d7a80fb3d06141dcc0d6')
             ->setDescription('Test description')
             ->save();
         return $card;
