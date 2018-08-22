@@ -314,7 +314,8 @@ class OrdersController extends Controller
         $boardID = "";
         $listID = "";
         $boards = $client->api('member')->boards()->all("me", array());
-        Log::info($boards[0]); ////////////BOARD A
+        Log::info('Supplier A'.json_encode($boards[0])); ////////////BOARD A
+        Log::info('Supplier B'.json_encode($boards[1])); ////////////BOARD A
         foreach ($boards as $board) {
 
             Log::info(json_encode($board));
