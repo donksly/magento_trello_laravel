@@ -370,11 +370,10 @@ class OrdersController extends Controller
 
         $manager = new Manager($client);
 
-        $card = $manager->getCard($supplier_id);
+        $card = $manager->getList($supplier_id);
 
         $card
             ->setName('Test card')
-            ->setDescription('Test description')
             ->save();
     }
 
