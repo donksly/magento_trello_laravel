@@ -272,7 +272,16 @@ class OrdersController extends Controller
             'expiration' => 'never',
             'scope' => 'read,write'
         ));
-        return count($server);
+        // Retrieve temporary credentials
+        $temporaryCredentials = $server->getTemporaryCredentials();
+
+        // Store credentials in the session, we'll need them later
+        $_SESSION['temporary_credentials_oauth'] = serialize($temporaryCredentials);
+        session_write_close();
+
+        // Second part of OAuth 1.0 authentication is to redirect the
+        // resource owner to the login screen on the server.
+        $server->authorize($temporaryCredentials);
     }
 
 
