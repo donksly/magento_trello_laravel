@@ -165,6 +165,7 @@ return [
         /**laravel trello and oauth**/
         Gregoriohc\LaravelTrello\TrelloServiceProvider::class,
         /**Socialite providers - trello**/
+        Laravel\Socialite\SocialiteServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class,
     ],
 
@@ -215,9 +216,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         /**laravel trello and oauth**/
-        'Trellos' => Gregoriohc\LaravelTrello\Facades\Wrapper::class,
-        /**laravel trello and oauth socialite**/
-        'Trello' => Laravel\Socialite\Facades\Socialite::class,
+        'Trello' => Gregoriohc\LaravelTrello\Facades\Wrapper::class,
 
     ],
 
