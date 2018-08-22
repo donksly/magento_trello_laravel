@@ -9,6 +9,7 @@ use App\Suppliers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
+use League\OAuth1\Client\Server\Trello;
 
 class OrdersController extends Controller
 {
@@ -255,6 +256,24 @@ class OrdersController extends Controller
         return $update_ok;
     }
 
+    protected $live_url = 'https://stocklyretailer.herokuapp.com/';
+    protected $live_url_api = 'https://stocklyretailer.herokuapp.com/api/';
+    protected $trello_identifier = '4ff88df6485dd26e226982183a361880';
+    protected $trello_secret = '7c23575bd820e6716e28bf3db142929d48a056caac35f38bb03f21c2664b2752';
+    protected $trello_application_name = 'StocklyERetailer';
+
+
+    public function fetchTrelloToken(){
+        $server =  new Trello(array(
+            'identifier' => $this->trello_identifier,
+            'secret' => $this->trello_secret,
+            'callback_uri' => $this->live_url_api.'trellotoken',
+            'name' => 'your-application-name', // optional, defaults to null
+            'expiration' => 'never',
+            'scope' => 'read,write'
+        ));
+        return $server;
+    }
 
 
 
