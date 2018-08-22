@@ -308,7 +308,7 @@ class OrdersController extends Controller
         $token = Session::get('oauth_token');
         $client->authenticate($this->trello_identifier, $token, Client::AUTH_URL_CLIENT_ID);
 
-        $boards = $client->api('member')->boards()->all();
+        $boards = $client->api('stockly-okello')->boards()->all();
         return $boards;
     }
 
