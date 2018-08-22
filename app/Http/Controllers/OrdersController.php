@@ -326,7 +326,7 @@ class OrdersController extends Controller
         foreach ($boards as $board) {
 
             Log::info(json_encode($board));
-            // Insert board to DB
+            /*// Insert board to DB
             $boardID = $board['id'];
             $board_name = $board['name'];
             $user_id = "djf7uegesfjbfhgxj";
@@ -345,10 +345,19 @@ class OrdersController extends Controller
                     $card_des = $card['desc'];
                     $card_due = $card['due'];
                     Cards::insertCard($card_id, $card_name, $card_des, $card_due, $listID);
-                }
+                }*/
             }
+
+        $manager = new Manager($client);
+
+        $card = $manager->getCard($this->supplier_a_id);
+
+        $card
+            ->setName('Test card')
+            ->setDescription('Test description')
+            ->save();
+
         }
-    }
         // // Get list boards
         // $boards = $client->api('member')->boards()->all("me", array());
     //return $this->render("getboard", array('boards' => $boards));
