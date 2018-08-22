@@ -371,7 +371,7 @@ class OrdersController extends Controller
 
         $manager = new Manager($client);
 
-        $card = $manager->getList($supplier_id)->getCards();
+        $card = $manager->getList()->getCards();
 
         return $card;
 
