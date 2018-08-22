@@ -1,0 +1,5 @@
+https://github.com/SocialiteProviders/Trello
+
+https://packagist.org/packages/socialiteproviders/trello
+
+https://socialiteproviders.github.io/providers/trello.html
