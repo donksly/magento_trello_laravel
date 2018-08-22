@@ -10502,8 +10502,9 @@ $(document).ready(function () {
 
     $('body').on('click', '#open-modal-reject-open', function (a) {
         a.preventDefault();
-        var order_id = $(this).attr('data-order-id');
+        var order_id = $(this).attr('data-long-order-id');
         var order_table_id = $(this).attr('data-order-table-id');
+        var supplier_id = $(this).attr('data-supplier-id');
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
         $.ajax({

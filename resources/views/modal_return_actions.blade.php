@@ -15,7 +15,8 @@
                 </label>
             </div>
             <br>
-            <input type="text" name="order_id" value="{{ $request_values[2] }}" hiddens>
+            <input type="text" name="order_id" value="{{ $request_values[0] }}" hidden>
+            <input type="text" name="supplier_id" value="{{ $request_values[2] }}" hidden>
             <button class="btn btn-success" type="submit">
                 <i class="fa fa-send"></i>
                 Request return

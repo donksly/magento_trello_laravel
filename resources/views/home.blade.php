@@ -70,11 +70,12 @@
                                 <a href="" id="open-modal-reject-open" data-order-table-id="{{ $order->id }}"
                                    data-order-id="{{ $order->sales_order_id }}"
                                    data-long-order-id="{{  $helper->formatOrderNumberForView($order->sales_order_id) }}"
-                                   data-toggle="modal" data-target="#primary_modal">
+                                   data-supplier-id = {{ $order->supplier_id }}
+                                           data-toggle="modal" data-target="#primary_modal">
                                     <i class="fa fa-backward"></i>
                                 </a>
-                                @else
-                                    <i id="closed_order_icon" class="fa fa-lock"></i>
+                            @else
+                                <i id="closed_order_icon" class="fa fa-lock"></i>
                             @endif
                         </td>
                         <td>

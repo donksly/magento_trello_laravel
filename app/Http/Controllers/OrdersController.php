@@ -90,7 +90,8 @@ class OrdersController extends Controller
     public function loadReturnModal(Request $request){
         $request_values = array(
             $request->order_id,
-            $request->order_table_id
+            $request->order_table_id,
+            $request->supplier_id
         );
         return view('modal_return_actions', compact('request_values'));
     }
@@ -179,11 +180,11 @@ class OrdersController extends Controller
 
     public function requestReturnArticle(Request $request, Helpers $helpers){
         $order_id = $request->order_id;
-        $supplier_id = $request->modal_new_supplier;
+        $supplier_id = $request->supplier_id;
 
         $supplier = new SuppliersController();
         $supplier_email = $supplier->getSingleSupplierById($supplier_id);
-        $message = "You have an article return request for #".$helpers->formatOrderNumberForView($order_id);
+        $message = "You have an article return request for #".$order_id;
 
 
         $helpers->sendEmail($supplier_email->email, 'E-Retailer - Return Article Request', $message);
