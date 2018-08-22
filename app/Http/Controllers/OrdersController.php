@@ -6,6 +6,7 @@ use App\Helpers;
 use App\MagentoSalesOrder;
 use App\Orders;
 use App\Suppliers;
+use Gregoriohc\LaravelTrello\TrelloServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
@@ -265,7 +266,7 @@ class OrdersController extends Controller
 
 
     public function fetchTrelloToken(){
-        return Socialite::with('Trello')->redirect();
+        return Socialite::with(TrelloServiceProvider::class)->redirect();
     }
 
 
