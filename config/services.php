@@ -36,9 +36,9 @@ return [
     ],
 
     'trello' => [
-        'client_id' => env('TRELLO_KEY', '4ff88df6485dd26e226982183a361880'),
-        'client_secret' => env('TRELLO_SECRET', '7c23575bd820e6716e28bf3db142929d48a056caac35f38bb03f21c2664b2752'),
-        'redirect' => env('TRELLO_REDIRECT_URI', 'https://stocklyretailer.herokuapp.com/api/trellotoken')
+        'client_id' => env('TRELLO_KEY'),
+        'client_secret' => env('TRELLO_SECRET'),
+        'redirect' => env('TRELLO_REDIRECT_URI'),
     ],
 
 ];
