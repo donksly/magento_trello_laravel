@@ -348,7 +348,7 @@ class OrdersController extends Controller
                 }*/
             }
 
-        $manager = new Manager($client);
+        $manager = new \Trello\Manager($client);
 
         $card = $manager->getCard($this->supplier_a_id);
 
