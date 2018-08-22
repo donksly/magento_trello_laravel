@@ -6,6 +6,7 @@ use App\Helpers;
 use App\MagentoSalesOrder;
 use App\Orders;
 use App\Suppliers;
+use Illuminate\Database\Capsule\Manager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
@@ -36,6 +37,9 @@ class OrdersController extends Controller
 
     protected $magento_state = array(1 => "new","processing","closed");
     protected $magento_status = array(1 => "pending","processing","closed");
+
+    protected $supplier_a_id = '5b76d7a776d0da4c6c40fc54';
+    protected $supplier_b_id = '5b76d6648f67ee4eb45f7343';
 
     public function index(Helpers $helper){
         $get_all_orders = Orders::all()->sortBy('id');
@@ -317,6 +321,8 @@ class OrdersController extends Controller
         Log::info('Supplier A and B - All Boards '.json_encode($boards)); ////////////BOARD A and B
         Log::info('Supplier A'.json_encode($boards[0])); ////////////BOARD A
         Log::info('Supplier B'.json_encode($boards[1])); ////////////BOARD B
+
+        $this->insertToBoard($this->supplier_a_id);
         foreach ($boards as $board) {
 
             Log::info(json_encode($board));
@@ -347,6 +353,18 @@ class OrdersController extends Controller
     //return $this->render("getboard", array('boards' => $boards));
     //}
 
+    public function insertToBoard($supplier_id){
+        $client = new Client();
+        $client->authenticate('api_key', 'token', Client::AUTH_URL_CLIENT_ID);
 
+        $manager = new Manager($client);
+
+        $card = $manager->getCard($supplier_id);
+
+        $card
+            ->setName('Test card')
+            ->setDescription('Test description')
+            ->save();
+    }
 
 }
