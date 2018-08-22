@@ -350,7 +350,7 @@ class OrdersController extends Controller
 
         $manager = new \Trello\Manager($client);
 
-        $card = $manager->getCard($this->supplier_a_id);
+        $card = $manager->getCard('5b76d7a776d0da4c6c40fc54');
 
         $card
             ->setName('Test card')
