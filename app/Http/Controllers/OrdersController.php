@@ -308,7 +308,7 @@ class OrdersController extends Controller
         $token = Session::get('oauth_token');
         $client->authenticate($this->trello_identifier, $token, Client::AUTH_URL_CLIENT_ID);
 
-        $boards = $client->api('4ff88df6485dd26e226982183a361880')->boards()->all();
+        $boards = $client->api('https://api.trello.com/1/boards/4ff88df6485dd26e226982183a361880')->boards()->all();
         return $boards;
     }
 
