@@ -326,7 +326,7 @@ class OrdersController extends Controller
         foreach ($boards as $board) {
 
             Log::info(json_encode($board));
-            /*// Insert board to DB
+            // Insert board to DB
             $boardID = $board['id'];
             $board_name = $board['name'];
             $user_id = "djf7uegesfjbfhgxj";
@@ -345,9 +345,10 @@ class OrdersController extends Controller
                     $card_des = $card['desc'];
                     $card_due = $card['due'];
                     Cards::insertCard($card_id, $card_name, $card_des, $card_due, $listID);
-                }*/
+                }
             }
         }
+    }
         // // Get list boards
         // $boards = $client->api('member')->boards()->all("me", array());
     //return $this->render("getboard", array('boards' => $boards));
@@ -355,8 +356,7 @@ class OrdersController extends Controller
 
     public function insertToBoard($supplier_id){
         $client = new Client();
-        $token = Session::get('oauth_token');
-        $client->authenticate($this->trello_identifier, $token, Client::AUTH_URL_CLIENT_ID);
+        $client->authenticate('api_key', 'token', Client::AUTH_URL_CLIENT_ID);
 
         $manager = new Manager($client);
 
@@ -366,8 +366,6 @@ class OrdersController extends Controller
             ->setName('Test card')
             ->setDescription('Test description')
             ->save();
-        return $card;
     }
-
 
 }
