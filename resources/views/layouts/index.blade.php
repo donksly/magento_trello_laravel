@@ -37,10 +37,10 @@
                     <a href="{{ url('/') }}" id="link_all_orders">All Orders</a>
                 </li>
                 <li>
-                    <a href="{{ url('/import') }}" id="link_import">Import</a>
+                    <a href="{{ url('/suppliers') }}" id="link_all_suppliers">Suppliers</a>
                 </li>
                 <li>
-                    <a href="{{ url('/suppliers') }}" id="link_all_suppliers">Suppliers</a>
+                    <a href="{{ url('/import') }}" id="link_import">Import</a>
                 </li>
             </ul>
         </div>
