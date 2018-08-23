@@ -338,6 +338,8 @@ class OrdersController extends Controller
                 //get all lists
                 //////$lists = json_encode($client->api('board')->lists()->all($boards[$i]['id']));
                 //////Log::info($lists);
+                $board_id = $boards[$i]['id'];
+                $board_name = $boards[$i]['name'];
                 $lists = ($client->api('board')->lists()->all($boards[$i]['id']));
                 foreach($lists as $list){
                     //get all cards
@@ -350,7 +352,7 @@ class OrdersController extends Controller
                     $list_name = $list['name'];
                     $cards = ($client->api('board')->cards()->all($boards[$i]['id']));
 
-                    Log::info($list_name.' ----> '.json_encode($cards));
+                    Log::info($board_name.' ----> '.$list_name.' ----> '.json_encode($cards));
                 }
             }
 
