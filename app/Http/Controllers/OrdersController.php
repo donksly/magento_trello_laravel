@@ -340,10 +340,15 @@ class OrdersController extends Controller
                 $lists = ($client->api('board')->lists()->all($boards[$i]['id']));
                 foreach($lists as $list){
                     //get all cards
-                    //$cards = ($client->api('board')->lists($list)->all($boards[$i]['id']));
+
 
                     //Log::info(json_encode($list));
-                    Log::info(json_encode($list['id']));
+                    //Log::info($list['id']);
+
+                    $card_id = $list['id'];
+                    $card_name = $list['name'];
+                    Log::info($card_name);
+                    //$cards = ($client->api('board')->lists($list)->all($boards[$i]['id']));
                 }
             }
 
