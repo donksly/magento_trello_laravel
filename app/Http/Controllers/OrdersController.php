@@ -380,6 +380,7 @@ class OrdersController extends Controller
         if(sizeof($final_card)==0){
             foreach($all_orders as $order){
             //push all from our db
+                Log::info($order->supplier_id);
             $get_supplier = $this->suppliers[$order->supplier_id];
             $get_status_name = $helper->getCurrentOrderStatus($order->status);
             $card_name = $helper->formatOrderNumberForView($order->sales_order_id);
