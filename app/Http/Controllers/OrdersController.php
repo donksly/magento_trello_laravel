@@ -332,7 +332,8 @@ class OrdersController extends Controller
         $i = 0;
             for($i=0; $i<sizeof($boards); $i++){
                 ////Log::info($boards[$i]['id']);
-                $lists = $client->api('board')->lists()->all($boards[$i]['id']);
+                /////$lists = $client->api('board')->lists()->all($boards[$i]['id']);
+                $lists = json_encode($client->api('board')->lists()->all($boards[$i]['id']));
                 Log::info($lists);
             }
 
