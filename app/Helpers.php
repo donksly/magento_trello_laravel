@@ -108,7 +108,7 @@ class Helpers extends Model
         switch($status_id)
         {
             case $status_id == 1:
-                if($board_id == 1){//board a
+                if($board_id == 1){
                     $list_id = '5b76d7a80fb3d06141dcc0d6';
                 } elseif($board_id == 2){
                     $list_id = '5b76d6648f67ee4eb45f7344';
@@ -137,7 +137,7 @@ class Helpers extends Model
                 break;
             case $status_id == 6:
                 if($board_id == 1){
-                    $list_id = '5b7edc811dca99789270bf6d';
+                    $list_id = '5b76f3a19f38f33f418fa39f';
                 } elseif($board_id == 2) {
                     $list_id = '5b76f3d2d4d9227e1d6e245a';
                 }
