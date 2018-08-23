@@ -351,8 +351,19 @@ class OrdersController extends Controller
                     $list_id = $list['id'];
                     $list_name = $list['name'];
                     $cards = ($client->api('board')->cards()->all($boards[$i]['id']));
+                    //Log::info($board_name.' ----> '.$list_name.' ----> '.json_encode($cards));
 
-                    Log::info($board_name.' ----> '.$list_name.' ----> '.json_encode($cards));
+                    foreach($cards as $card){
+                        $board_id = $card['idBoard'];
+                        $list_id = $card['idList'];
+                        $card_id = $card['id'];
+
+                        $card_name = $card['name'];
+                        $card_description = $card['desc'];
+
+                        Log::info(json_encode($card));
+                        return(json_encode($card));
+                    }
                 }
             }
 
