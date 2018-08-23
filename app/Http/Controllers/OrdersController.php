@@ -350,7 +350,7 @@ class OrdersController extends Controller
                     $list_name = $list['name'];
                     $cards = ($client->api('board')->cards()->all($boards[$i]['id']));
 
-                    Log::info($cards);
+                    Log::info($list_name.' ----> '.json_encode($cards));
                 }
             }
 
