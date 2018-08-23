@@ -390,8 +390,8 @@ class OrdersController extends Controller
                 $close_default = 'false';
 
                 $card
-                    ->setBoard($helper->matchTrelloBoardId($order->supplier_id))
-                    ->setList($helper->matchTrelloListId($order->status, $order->supplier_id))
+                    ->setBoardId($helper->matchTrelloBoardId($order->supplier_id))
+                    ->setListId($helper->matchTrelloListId($order->status, $order->supplier_id))
                     ->setName($card_name)
                     ->setDescription($card_description)
                     ->save();
