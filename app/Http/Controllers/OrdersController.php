@@ -329,7 +329,7 @@ class OrdersController extends Controller
 
         //get all boards
         foreach ($boards as $board) {
-            Log::info($board[0]);
+            Log::info($board['id']);
         }
 
 
