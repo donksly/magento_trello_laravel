@@ -27,6 +27,7 @@ class OrdersController extends Controller
     protected $single_order_url = 'http://127.0.0.1/Magento-CE-2.2.5/admin_a27nw8/sales/order/view/order_id/';
     protected $er_admin_email = 'er_admin@stockly.ai';
     protected $state = array("CREATED", "SHIPPED", "DELIVERED", "CLOSED", "ASKED RETURN", "RETURNED", "PROBLEMATIC");
+    protected $state_in_trello = array(1 => "CREATED", "SHIPPED", "DELIVERED", "CLOSED", "ASKED_RETURN", "RETURNED", "PROBLEMATIC");
     protected $action_keys = array(1,2,3,4,5,6,7);
     protected $colors = array("cadetblue", "cornflowerblue", "#007bff", "lightgreen", "lightpink", "deeppink", "firebrick");
 
@@ -345,10 +346,11 @@ class OrdersController extends Controller
                     //Log::info(json_encode($list));
                     //Log::info($list['id']);
 
-                    $card_id = $list['id'];
-                    $card_name = $list['name'];
-                    Log::info($card_name);
-                    //$cards = ($client->api('board')->lists($list)->all($boards[$i]['id']));
+                    $list_id = $list['id'];
+                    $list_name = $list['name'];
+                    $cards = ($client->api('board')->lists()->all($list_id));
+
+                    Log::info($cards);
                 }
             }
 
