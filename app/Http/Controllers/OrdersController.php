@@ -300,7 +300,7 @@ class OrdersController extends Controller
     {
         $oauth_token = Session::get('oauth_token');
         $client = new Client();
-        Log::info('Auth Token Trello: ' .$oauth_token);
+
         $token = $oauth_token;
         $client->authenticate($this->trello_identifier, $token, Client::AUTH_URL_CLIENT_ID);
 
@@ -311,7 +311,7 @@ class OrdersController extends Controller
         $supplier_b_board = json_encode($boards[1]);
 
         foreach ($boards as $board) {
-            Log::info(json_encode($board));
+            //Log::info(json_encode($board));
         }
 
         //////////////////Insert - DIRTY below
