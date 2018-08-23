@@ -382,7 +382,7 @@ class OrdersController extends Controller
             foreach($all_orders as $order){
             //push all from our db
             $get_supplier = Suppliers::where('id','=',$order->supplier_id);
-                Log::info(json_encode($get_supplier));
+                Log::info($get_supplier);
             $get_status_name = $helper->getCurrentOrderStatus($order->status);
             $card_name = $helper->formatOrderNumberForView($order->sales_order_id);
             $card_description = 'Order by: '.$order->fetchMagentoOrders->customer_firstname.' '.
