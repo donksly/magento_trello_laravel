@@ -325,7 +325,7 @@ class OrdersController extends Controller
             ->setDescription('Main Store')
             ->save();
 
-         Log::info($manager->getCard('547440ad3f8b882bc11f0497'));
+         Log::info($manager->getAction('4ff88df6485dd26e226982183a361880'));
          return json_encode($boards);
 
     }
