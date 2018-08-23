@@ -359,7 +359,7 @@ class OrdersController extends Controller
             ->setListId('5b76d7a80fb3d06141dcc0d6')
             ->setDescription('Main Store')
             ->save();
-        return $card;
+        return json_encode($boards);
 
         /*$manager = new Manager($client);
 
