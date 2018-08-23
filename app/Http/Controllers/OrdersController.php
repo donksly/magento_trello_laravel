@@ -333,16 +333,24 @@ class OrdersController extends Controller
             for($i=0; $i<sizeof($boards); $i++){
                 ////Log::info($boards[$i]['id']);
                 /////$lists = $client->api('board')->lists()->all($boards[$i]['id']);
-                $lists = json_encode($client->api('board')->lists()->all($boards[$i]['id']));
-                Log::info($lists);
+
+                //get all lists
+                //////$lists = json_encode($client->api('board')->lists()->all($boards[$i]['id']));
+                //////Log::info($lists);
+                $lists = ($client->api('board')->lists()->all($boards[$i]['id']));
+                foreach($lists as $list){
+                    //get all cards
+                    //$cards = ($client->api('board')->lists($list)->all($boards[$i]['id']));
+
+                    Log::info(json_encode($list));
+                }
             }
 
 
 
 
-        //get all lists
 
-        //get all cards
+
 
 
      /////return json_encode($boards);
