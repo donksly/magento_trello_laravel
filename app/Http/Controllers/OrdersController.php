@@ -390,9 +390,9 @@ class OrdersController extends Controller
                     $close_default = 'false';
 
                     $card
-                        //->setBoardId($helper->matchTrelloBoardId($order->supplier_id))
+                        ->setBoardId($helper->matchTrelloBoardId($order->supplier_id))
                         ->setListId($helper->matchTrelloListId($order->status, $order->supplier_id))
-                        ->setName('Order #' . $card_name)
+                        ->setName('Order #' . $helper->formatOrderNumberForView($order->sales_order_id))
                         ->setDescription($card_description)
                         ->save();
                 }
