@@ -331,7 +331,7 @@ class OrdersController extends Controller
         //get all boards
         $supplier_array =  array('Supplier A','Supplier B');
         $i = 0;
-        $single_card = array();
+        $final_card = array();
             for($i=0; $i<sizeof($boards); $i++){
                 ////Log::info($boards[$i]['id']);
                 /////$lists = $client->api('board')->lists()->all($boards[$i]['id']);
@@ -367,6 +367,7 @@ class OrdersController extends Controller
                         $close_default = $single_card['closed']; //false
 
                         Log::info(json_encode($single_card));
+                        $final_card[] = $single_card;
 
                     }
                 }
@@ -376,7 +377,7 @@ class OrdersController extends Controller
 
 
 
-        return(json_encode($single_card));
+        return(json_encode($final_card));
 
 
      /////return json_encode($boards);
