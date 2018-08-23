@@ -280,7 +280,6 @@ class OrdersController extends Controller
     }
 
     public function fetchTrelloTokenCallback(){
-        Session::flush('oauth_token');
         $user = Socialite::driver('trello')->user();
         $accessTokenResponseBody = $user->accessTokenResponseBody;
 
@@ -290,7 +289,7 @@ class OrdersController extends Controller
 
         $oauth_token = $accessTokenResponseBody['oauth_token'];
         $oauth_token_secret = $accessTokenResponseBody['oauth_token_secret'];
-        Session::put('oauth_token',$oauth_token);
+        Session::flash('oauth_token',$oauth_token);
 
         return $this->trelloFetchAllBoards();
     }
