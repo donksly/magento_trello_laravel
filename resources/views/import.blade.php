@@ -18,7 +18,8 @@
                     <label for="new_supplier_url">Add JSON content:</label><br>
                     <textarea name="supplier_json" id="supplier_json" placeholder="JSON" required></textarea>
                 </div>
-                <button class="btn btn-success" type="submit">
+                <h5>Feature Under Construction!</h5>
+                <button class="btn btn-success" type="submit" disabled>
                     <i class="fa fa-cloud-upload"></i>
                     Update order table
                 </button>
@@ -31,6 +32,6 @@
 <script>
     $(document).ready(function() {
         $('#link_import').attr('class', 'active');
-        $('#page_header_title').html('<i class="fa fa-spinner fa-spin"></i> Import to Orders');
+        $('#page_header_title').html('<i class="fa fa-circle-o-notch fa-spin"></i> Import to Orders ');
     });
 </script>
