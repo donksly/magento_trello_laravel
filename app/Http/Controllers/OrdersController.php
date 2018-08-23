@@ -362,7 +362,7 @@ class OrdersController extends Controller
                         $card_description = $card['desc'];
 
                         Log::info(json_encode($card));
-                        return(json_encode($card));
+
                     }
                 }
             }
@@ -371,7 +371,7 @@ class OrdersController extends Controller
 
 
 
-
+        return(json_encode($card));
 
 
      /////return json_encode($boards);
