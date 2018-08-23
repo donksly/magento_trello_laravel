@@ -348,7 +348,7 @@ class OrdersController extends Controller
 
                     $list_id = $list['id'];
                     $list_name = $list['name'];
-                    $cards = ($client->api('board')->lists($list_id)->card()->all());
+                    $cards = ($client->api('board')->lists($list_id)->getCard()->all());
 
                     Log::info($cards);
                 }
