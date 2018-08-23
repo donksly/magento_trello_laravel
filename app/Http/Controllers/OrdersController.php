@@ -377,6 +377,7 @@ class OrdersController extends Controller
         $all_orders = Orders::all();
         $helper = new Helpers();
 
+
         if(sizeof($final_card)==0){
             foreach($all_orders as $order){
             //push all from our db
@@ -389,8 +390,8 @@ class OrdersController extends Controller
                 $close_default = 'false';
 
                 $card
-                    ->setBoard($get_supplier)
-                    ->setList($get_status_name)
+                    ->setBoard($helper->matchTrelloBoardId($order->supplier_id))
+                    ->setList($helper->matchTrelloListId($order->status, $order->supplier_id))
                     ->setName($card_name)
                     ->setDescription($card_description)
                     ->save();
