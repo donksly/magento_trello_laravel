@@ -334,7 +334,7 @@ class OrdersController extends Controller
                 Log::info($boards[$i]['id']);
             }
 
-        }
+
 
 
         //get all lists
