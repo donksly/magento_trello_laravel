@@ -4,7 +4,7 @@
 </div>
 
 <div class="modal-body">
-    <h6>Order Number: {{ $request_values[0] }}</h6><br>
+    <h6>Order Number: #{{ $request_values[0] }}</h6><br>
 
     <form action="{{ url('/modal_save_update_supplier') }}" method="post">
         {{ csrf_field() }}
