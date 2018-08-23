@@ -280,6 +280,7 @@ class OrdersController extends Controller
     }
 
     public function fetchTrelloTokenCallback(){
+        Session::flush('oauth_token');
         $user = Socialite::driver('trello')->user();
         $accessTokenResponseBody = $user->accessTokenResponseBody;
 
@@ -318,12 +319,12 @@ class OrdersController extends Controller
         $manager = new Manager($client);
         $card = $manager->getCard();
 
-        $card
+        /*$card
             ->setName('Test000005')
             // Go to you board in browser add ".json" at the end of the URL and search for the ID of the list you wont...
             ->setListId('5b76d7a80fb3d06141dcc0d6')
             ->setDescription('Main Store')
-            ->save();
+            ->save();*/
 
          Log::info(json_encode($manager->getAction('5b7dc71ed984dd6a3aa6f4f0')));
          return json_encode($boards);
