@@ -109,44 +109,44 @@ class Helpers extends Model
         {
             case $status_id == 1:
                 if($board_id == 1){//board a
-                    $list_id = '5b76d6648f67ee4eb45f7344';
-                } else {
                     $list_id = '5b76d7a80fb3d06141dcc0d6';
+                } else {
+                    $list_id = '5b76d6648f67ee4eb45f7344';
                 }
                 break;
             case $status_id == 2:
                 if($board_id == 1){
-                    $list_id = '5b76d6648f67ee4eb45f7345';
-                } else {
                     $list_id = '5b76d7a83f20d55c565b97e8';
+                } else {
+                    $list_id = '5b76d6648f67ee4eb45f7345';
                 }
                 break;
             case $status_id == 3:
                 if($board_id == 1){
-                    $list_id = '5b76f3cb50bdc1018d93a8b4';
-                } else {
                     $list_id = '5b76d7a876d0da4c6c40fc77';
+                } else {
+                    $list_id = '5b76f3cb50bdc1018d93a8b4';
                 }
                 break;
             case $status_id == 5:
                 if($board_id == 1){
-                    $list_id = '5b76f3cfa4958c89969f1c61';
-                } else {
                     $list_id = '5b76f39c25a57c5d9848fff3';
+                } else {
+                    $list_id = '5b76f3cfa4958c89969f1c61';
                 }
                 break;
             case $status_id == 6:
                 if($board_id == 1){
-                    $list_id = '5b76f3d2d4d9227e1d6e245a';
+                    $list_id = '5b7edc811dca99789270bf6d';
                 } else {
-                    $list_id = '5b76f3a19f38f33f418fa39f';
+                    $list_id = '5b76f3d2d4d9227e1d6e245a';
                 }
                 break;
             case $status_id == 7:
                 if($board_id == 1){
-                    $list_id = '5b76f3d6c65c1036350882df';
-                } else {
                     $list_id = '5b76f3a8f0abd42a16f72974';
+                } else {
+                    $list_id = '5b76f3d6c65c1036350882df';
                 }
                 break;
             }

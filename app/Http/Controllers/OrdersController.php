@@ -392,7 +392,7 @@ class OrdersController extends Controller
                 $card
                     ->setBoardId($helper->matchTrelloBoardId($order->supplier_id))
                     ->setListId($helper->matchTrelloListId($order->status, $order->supplier_id))
-                    ->setName($card_name)
+                    ->setName('Order #'.$card_name)
                     ->setDescription($card_description)
                     ->save();
             }
