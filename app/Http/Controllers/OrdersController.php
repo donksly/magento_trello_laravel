@@ -276,80 +276,45 @@ class OrdersController extends Controller
     }
 
     public function fetchTrelloToken(){
-        //return Socialite::with('trello')->redirect();
         return Socialite::with('trello')->scopes(['read', 'write'])->redirect();
     }
 
     public function fetchTrelloTokenCallback(){
         $user = Socialite::driver('trello')->user();
         $accessTokenResponseBody = $user->accessTokenResponseBody;
-        /*Log::info($accessTokenResponseBody);*/
-
-        /*Log::info($_GET['oauth_token']);
-        Log::info($_GET['oauth_verifier']);*/
 
         if (isset($_GET['oauth_token']) && isset($_GET['oauth_verifier'])) {
-            // Retrieve the temporary credentials we saved before
             $temporaryCredentials = unserialize(Session::get('temporary_credentials'));
-
-            // We will now retrieve token credentials from the server
-            //$tokenCredentials = $server->getTokenCredentials($temporaryCredentials, $_GET['oauth_token'], $_GET['oauth_verifier']);
         }
-        //return $tokenCredentials;
 
-
-        Log::info('Auth Token: '.$accessTokenResponseBody['oauth_token']);
-        Log::info('Auth Token Secret: '.$accessTokenResponseBody['oauth_token_secret']);
-
-        Session::put('oauth_token',$accessTokenResponseBody['oauth_token']);
-
-        //Log::info($this->trelloFetchAllBoards());
+        $oauth_token = $accessTokenResponseBody['oauth_token'];
+        $oauth_token_secret = $accessTokenResponseBody['oauth_token_secret'];
+        Session::put('oauth_token',$oauth_token);
 
         return $this->trelloFetchAllBoards();
     }
 
 
 
-    public function trelloFetchAllBoards(){
+    public function trelloFetchAllBoards()
+    {
+        $oauth_token = Session::get('oauth_token');
         $client = new Client();
-        Log::info('Auth Token Trello: '.Session::get('oauth_token'));
-        $token = Session::get('oauth_token');
+        Log::info('Auth Token Trello: ' .$oauth_token);
+        $token = $oauth_token;
         $client->authenticate($this->trello_identifier, $token, Client::AUTH_URL_CLIENT_ID);
 
-        $boardID = "";
-        $listID = "";
         $boards = $client->api('member')->boards()->all("me", array());
-        Log::info('Supplier A and B - All Boards '.json_encode($boards)); ////////////BOARD A and B
-        Log::info('Supplier A'.json_encode($boards[0])); ////////////BOARD A
-        Log::info('Supplier B'.json_encode($boards[1])); ////////////BOARD B
 
-        //Log::info($this->insertToBoard($this->supplier_a_id));
+        $all_boards = json_encode($boards);
+        $supplier_a_board = json_encode($boards[0]);
+        $supplier_b_board = json_encode($boards[1]);
+
         foreach ($boards as $board) {
-
             Log::info(json_encode($board));
-            /*// Insert board to DB
-            $boardID = $board['id'];
-            $board_name = $board['name'];
-            $user_id = "djf7uegesfjbfhgxj";
-            Boards::insertBoard($boardID, $board_name, $user_id);
-            $lists = $client->api('boards')->lists()->all("{$boardID}", array());
-            foreach ($lists as $list) {
-                // Insert list to DB
-                $listID = $list['id'];
-                $name = $list['name'];
-                Cards::insertList($listID, $name, $boardID);
-                $cards = $client->api('lists')->cards()->all("{$listID}", array());
-                foreach ($cards as $card) {
-                    // Insert card to DB
-                    $card_id = $card['id'];
-                    $card_name = $card['name'];
-                    $card_des = $card['desc'];
-                    $card_due = $card['due'];
-                    Cards::insertCard($card_id, $card_name, $card_des, $card_due, $listID);
-                }*/
-            }
+        }
 
-        //////////////////Insert
+        //////////////////Insert - DIRTY below
         $manager = new Manager($client);
         $card = $manager->getCard();
 
@@ -359,38 +324,14 @@ class OrdersController extends Controller
             ->setListId('5b76d7a80fb3d06141dcc0d6')
             ->setDescription('Main Store')
             ->save();
-        return json_encode($boards);
 
-        /*$manager = new Manager($client);
-
-        $card = $manager->getCard($this->supplier_a_id);
-        Log::info($card);
-        $card
-            ->setName('Test card')
-            ->setDescription('Test description')
-            ->save();*/
-
-        }
-        // // Get list boards
-        // $boards = $client->api('member')->boards()->all("me", array());
-    //return $this->render("getboard", array('boards' => $boards));
-    //}
-
-    public function insertToBoard($client)
-    {
-
-
-        $manager = new Manager($client);
-        $card = $manager->getCard();
-
-        $card
-            ->setName('Test card')
-            // Go to you board in browser add ".json" at the end of the URL and search for the ID of the list you wont...
-            ->setListId('5b76d7a80fb3d06141dcc0d6')
-            ->setDescription('Test description')
-            ->save();
-        return $card;
+         Log::info($manager->getCard('547440ad3f8b882bc11f0497'));
+         return json_encode($boards);
 
     }
+
+
+
+
 
 }
