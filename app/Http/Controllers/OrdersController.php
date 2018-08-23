@@ -331,7 +331,9 @@ class OrdersController extends Controller
         $supplier_array =  array('Supplier A','Supplier B');
         $i = 0;
             for($i=0; $i<sizeof($boards); $i++){
-                Log::info($boards[$i]['id']);
+                ////Log::info($boards[$i]['id']);
+                $lists = $client->api('board')->lists()->all($boards[$i]['id']);
+                Log::info($lists);
             }
 
 
