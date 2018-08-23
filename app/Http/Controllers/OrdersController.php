@@ -327,10 +327,18 @@ class OrdersController extends Controller
 
         ///Log::info(json_encode($manager->getAction('5b7dc71ed984dd6a3aa6f4f0')));
 
-        $get_list_in_board_a = $card->getList();
-        Log::info(sizeof(json_encode($get_list_in_board_a)));
+        //get all boards
+        foreach ($boards as $board) {
+            Log::info($board->id);
+        }
 
-     return json_encode($boards);
+
+        //get all lists
+
+        //get all cards
+
+
+     /////return json_encode($boards);
 
     }
 
