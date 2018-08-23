@@ -389,16 +389,16 @@ class OrdersController extends Controller
 
                     $close_default = 'false';
 
-                    /*Log::info($helper->matchTrelloBoardId($order->supplier_id)." -- ".$helper->matchTrelloListId($order->status, $order->supplier_id)
-                        ." -- ".'Order #' . $helper->formatOrderNumberForView($order->sales_order_id)." -- ".$card_description);*/
+                    Log::info($helper->matchTrelloBoardId($order->supplier_id)." -- ".$helper->matchTrelloListId($order->status, $order->supplier_id)
+                        ." -- ".'Order #' . $helper->formatOrderNumberForView($order->sales_order_id)." -- ".$card_description);
 
 
                         //->setBoardId($helper->matchTrelloBoardId($order->supplier_id))
-                    $card
+                    /*$card
                         ->setListId($helper->matchTrelloListId($order->status, $order->supplier_id))
                         ->setName('Order #' . $helper->formatOrderNumberForView($order->sales_order_id))
                         ->setDescription($card_description)
-                        ->save();
+                        ->save();*/
                 }
             }
         } else {
