@@ -97,9 +97,9 @@ class OrdersController extends Controller
         return $combined;
     }
 
-    public function loadSupplierModal(Request $request){
+    public function loadSupplierModal(Request $request, Helpers $helpers){
         $request_values = array(
-            $request->order_id,
+            $helpers->formatOrderNumberForView($request->order_id),
             $request->order_table_id,
             $request->supplier_id
         );
