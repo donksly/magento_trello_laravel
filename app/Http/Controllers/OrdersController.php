@@ -40,8 +40,7 @@ class OrdersController extends Controller
     protected $magento_state = array(1 => "new","processing","closed");
     protected $magento_status = array(1 => "pending","processing","closed");
 
-    protected $supplier_a_id = '5b76d7a776d0da4c6c40fc54';
-    protected $supplier_b_id = '5b76d6648f67ee4eb45f7343';
+    protected $suppliers = array(1 => "Supplier A","Supplier B");
 
     public function index(Helpers $helper){
         $get_all_orders = Orders::all()->sortBy('id');
@@ -381,14 +380,10 @@ class OrdersController extends Controller
         if(sizeof($final_card)==0){
             foreach($all_orders as $order){
             //push all from our db
-            $get_supplier = Suppliers::where('id','=',$order->supplier_id);
-                Log::info($get_supplier);
+            $get_supplier = $this->suppliers[$order->supplier_id];
             $get_status_name = $helper->getCurrentOrderStatus($order->status);
             $card_name = $helper->formatOrderNumberForView($order->sales_order_id);
-            $card_description = 'Order by: '.$order->fetchMagentoOrders->customer_firstname.' '.
-                $order->fetchMagentoOrders->customer_middlename.' '.$order->fetchMagentoOrders->customer_lastname.'.
-                Purchase point: '.$order->fetchMagentoOrders->ordersSalesInvoice->store_name.'. Purchase date: '
-                .$helper->formatDateTimeWithSeconds($order->fetchMagentoOrders->created_at);
+            $card_description = 'Created on: Order by: '.$helper->formatDateTimeWithSeconds($order->created_at);
             }
             $close_default = 'false';
 
