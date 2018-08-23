@@ -328,8 +328,11 @@ class OrdersController extends Controller
         ///Log::info(json_encode($manager->getAction('5b7dc71ed984dd6a3aa6f4f0')));
 
         //get all boards
+        $supplier_array =  array('Supplier A','Supplier B');
+        $i = 0;
         foreach ($boards as $board) {
-            Log::info($board['id']);
+            //$board_id_a =
+            Log::info($board['id'][0]);
         }
 
 
