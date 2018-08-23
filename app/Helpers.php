@@ -96,9 +96,10 @@ class Helpers extends Model
     }
 
     public function matchTrelloBoardId($id){
-        $trello_board_id = "5b76d7a776d0da4c6c40fc54";
         if($id == 2){
             $trello_board_id = '5b76d6648f67ee4eb45f7343';
+        }else{
+            $trello_board_id = "5b76d7a776d0da4c6c40fc54";
         }
         return $trello_board_id;
     }
