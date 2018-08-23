@@ -328,83 +328,81 @@ class OrdersController extends Controller
         ///Log::info(json_encode($manager->getAction('5b7dc71ed984dd6a3aa6f4f0')));
 
         //get all boards
-        $supplier_array =  array('Supplier A','Supplier B');
+        $supplier_array = array('Supplier A', 'Supplier B');
         $i = 0;
         $final_card = array();
-            for($i=0; $i<sizeof($boards); $i++){
-                ////Log::info($boards[$i]['id']);
-                /////$lists = $client->api('board')->lists()->all($boards[$i]['id']);
+        for ($i = 0; $i < sizeof($boards); $i++) {
+            ////Log::info($boards[$i]['id']);
+            /////$lists = $client->api('board')->lists()->all($boards[$i]['id']);
 
-                //get all lists
-                //////$lists = json_encode($client->api('board')->lists()->all($boards[$i]['id']));
-                //////Log::info($lists);
-                $board_id = $boards[$i]['id'];
-                $board_name = $boards[$i]['name'];
-                $lists = ($client->api('board')->lists()->all($boards[$i]['id']));
-                foreach($lists as $list){
-                    //get all cards
-
-
-                    //Log::info(json_encode($list));
-                    //Log::info($list['id']);
-
-                    $list_id = $list['id'];
-                    $list_name = $list['name'];
-                    $cards = ($client->api('board')->cards()->all($boards[$i]['id']));
-                    //Log::info($board_name.' ----> '.$list_name.' ----> '.json_encode($cards));
-
-                    foreach($cards as $single_card){
-                        $board_id = $single_card['idBoard'];
-                        $card_level_board_name = $board_name;
-
-                        $list_id = $single_card['idList'];
-                        $card_level_list_name = $list_name;
-
-                        $card_id = $single_card['id'];
-                        $card_name = $single_card['name'];
-                        $card_description = $single_card['desc'];
-                        $close_default = $single_card['closed']; //false
-
-                        //Log::info(json_encode($single_card));
-                        $final_card[] = $single_card;
+            //get all lists
+            //////$lists = json_encode($client->api('board')->lists()->all($boards[$i]['id']));
+            //////Log::info($lists);
+            $board_id = $boards[$i]['id'];
+            $board_name = $boards[$i]['name'];
+            $lists = ($client->api('board')->lists()->all($boards[$i]['id']));
+            foreach ($lists as $list) {
+                //get all cards
 
 
-                    }
+                //Log::info(json_encode($list));
+                //Log::info($list['id']);
+
+                $list_id = $list['id'];
+                $list_name = $list['name'];
+                $cards = ($client->api('board')->cards()->all($boards[$i]['id']));
+                //Log::info($board_name.' ----> '.$list_name.' ----> '.json_encode($cards));
+
+                foreach ($cards as $single_card) {
+                    $board_id = $single_card['idBoard'];
+                    $card_level_board_name = $board_name;
+
+                    $list_id = $single_card['idList'];
+                    $card_level_list_name = $list_name;
+
+                    $card_id = $single_card['id'];
+                    $card_name = $single_card['name'];
+                    $card_description = $single_card['desc'];
+                    $close_default = $single_card['closed']; //false
+
+                    //Log::info(json_encode($single_card));
+                    $final_card[] = $single_card;
+
+
                 }
             }
+        }
 
 
         $all_orders = Orders::all();
         $helper = new Helpers();
 
 
-        if(sizeof($final_card)==0){
-            foreach($all_orders as $order){
-            //push all from our db
-            if($order->supplier_id != 0 ){
-                $get_supplier = $this->suppliers[$order->supplier_id];
-                $get_status_name = $helper->getCurrentOrderStatus($order->status);
-                $card_name = $helper->formatOrderNumberForView($order->sales_order_id);
-                $card_description = 'Created on: Order by: '.$helper->formatDateTimeWithSeconds($order->created_at);
-            }
-                $close_default = 'false';
+        if (sizeof($final_card) == 0) {
+            foreach ($all_orders as $order) {
+                //push all from our db
+                if ($order->supplier_id != 0) {
+                    $get_supplier = $this->suppliers[$order->supplier_id];
+                    $get_status_name = $helper->getCurrentOrderStatus($order->status);
+                    $card_name = $helper->formatOrderNumberForView($order->sales_order_id);
+                    $card_description = 'Created on: Order by: ' . $helper->formatDateTimeWithSeconds($order->created_at);
 
-                $card
-                    ->setListId($helper->matchTrelloListId($order->status, $order->supplier_id))
-                    ->setName('Order #'.$card_name)
-                    ->setDescription($card_description)
-                    ->save();
+                    $close_default = 'false';
+
+                    $card
+                        ->setBoardId($helper->matchTrelloBoardId($order->supplier_id))
+                        ->setListId($helper->matchTrelloListId($order->status, $order->supplier_id))
+                        ->setName('Order #' . $card_name)
+                        ->setDescription($card_description)
+                        ->save();
+                }
             }
-        }else{
-            //validate and sync pulled now validate update and push i.e update
+        } else {
+            //validate and sync pulled now, validate, update and push i.e update
             //foreach
         }
-
-
-        return(json_encode($final_card));
-
-
-     /////return json_encode($boards);
+        return (json_encode($final_card));
+        /////return json_encode($boards);
 
     }
 
