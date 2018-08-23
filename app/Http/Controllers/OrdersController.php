@@ -336,7 +336,7 @@ class OrdersController extends Controller
             for($i=0; $i<sizeof($board); $i++){
 
             }
-            Log::info(sizeof($board['id']));
+            Log::info(sizeof($board));
 
         }
 
