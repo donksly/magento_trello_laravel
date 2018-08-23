@@ -331,8 +331,13 @@ class OrdersController extends Controller
         $supplier_array =  array('Supplier A','Supplier B');
         $i = 0;
         foreach ($boards as $board) {
+            ///Log::info($board['id']);
             //$board_id_a =
-            Log::info($board['id'][0]);
+            for($i=0; $i<sizeof($board); $i++){
+
+            }
+            Log::info(sizeof($board['id']));
+
         }
 
 
