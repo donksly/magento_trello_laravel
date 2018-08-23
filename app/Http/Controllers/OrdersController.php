@@ -181,7 +181,6 @@ class OrdersController extends Controller
 
     public function createOrUpdateSupplier(Request $request, Helpers $helpers){
         $order_id = $request->order_id;
-        $order_table_id = $request->order_table_id;
         $supplier_id = $request->modal_new_supplier;
 
         $find_order = Orders::all()->where('id','=',$order_id)->first();
@@ -218,8 +217,6 @@ class OrdersController extends Controller
         $order_id = $request->order_id;
         $supplier_id = $request->modal_current_supplier;
 
-        //////////////////////ensure you've a method to only pass NON-CLOSED ITEMS through this filter
-
         $ok_to_update = $this->checkImpossibleEvaluationAlgorithm($order_id, $request->new_state);
         $find_order = Orders::all()->where('id','=',$order_id)->first();
 
@@ -240,8 +237,6 @@ class OrdersController extends Controller
         }else{
             $find_order->update(['updated_at' => null, 'error_log' => 'ERROR: Impossible evaluation detected!']);
         }
-
-        ///////////////////////////send to trello api updated ver
 
         return $ok_to_update;
     }
@@ -288,7 +283,6 @@ class OrdersController extends Controller
         }
 
         $oauth_token = $accessTokenResponseBody['oauth_token'];
-        $oauth_token_secret = $accessTokenResponseBody['oauth_token_secret'];
         Session::flash('oauth_token',$oauth_token);
 
         return $this->trelloFetchAllBoards();
@@ -300,102 +294,21 @@ class OrdersController extends Controller
     {
         $oauth_token = Session::get('oauth_token');
         $client = new Client();
-
         $token = $oauth_token;
         $client->authenticate($this->trello_identifier, $token, Client::AUTH_URL_CLIENT_ID);
 
-        $boards = $client->api('member')->boards()->all("me", array());
-
-        $all_boards = json_encode($boards);
-        $supplier_a_board = json_encode($boards[0]);
-        $supplier_b_board = json_encode($boards[1]);
-
-        foreach ($boards as $board) {
-            //Log::info(json_encode($board));
-        }
-
-        //////////////////Insert - DIRTY below
         $manager = new Manager($client);
         $card = $manager->getCard();
-
-        /*$card
-            ->setName('Test000005')
-            // Go to you board in browser add ".json" at the end of the URL and search for the ID of the list you wont...
-            ->setListId('5b76d7a80fb3d06141dcc0d6')
-            ->setDescription('Main Store')
-            ->save();*/
-
-        ///Log::info(json_encode($manager->getAction('5b7dc71ed984dd6a3aa6f4f0')));
-
-        //get all boards
-        $supplier_array = array('Supplier A', 'Supplier B');
-        $i = 0;
         $final_card = array();
-        for ($i = 0; $i < sizeof($boards); $i++) {
-            ////Log::info($boards[$i]['id']);
-            /////$lists = $client->api('board')->lists()->all($boards[$i]['id']);
-
-            //get all lists
-            /*$lists = json_encode($client->api('board')->lists()->all($boards[$i]['id']));
-            //Log::info($boards[$i]['name'].' ----- '.$lists);*/
-            //$lists = json_encode($client->api('board')->lists()->all($boards[$i]['id']));
-            //Log::info($lists);
-            $board_id = $boards[$i]['id'];
-            $board_name = $boards[$i]['name'];
-            $lists = ($client->api('board')->lists()->all($boards[$i]['id']));
-            foreach ($lists as $list) {
-                //get all cards
-
-
-                //Log::info(json_encode($list));
-                //Log::info($list['id']);
-
-                $list_id = $list['id'];
-                $list_name = $list['name'];
-                $cards = ($client->api('board')->cards()->all($boards[$i]['id']));
-                //Log::info($board_name.' ----> '.$list_name.' ----> '.json_encode($cards));
-
-                foreach ($cards as $single_card) {
-                    $board_id = $single_card['idBoard'];
-                    $card_level_board_name = $board_name;
-
-                    $list_id = $single_card['idList'];
-                    $card_level_list_name = $list_name;
-
-                    $card_id = $single_card['id'];
-                    $card_name = $single_card['name'];
-                    $card_description = $single_card['desc'];
-                    $close_default = $single_card['closed']; //false
-
-                    //Log::info(json_encode($single_card));
-                    $final_card[] = $single_card;
-
-
-                }
-            }
-        }
-
-
         $all_orders = Orders::all();
         $helper = new Helpers();
 
 
         if (sizeof($final_card) == 0) {
             foreach ($all_orders as $order) {
-                //push all from our db
                 if ($order->supplier_id != 0) {
-                    $get_supplier = $this->suppliers[$order->supplier_id];
-                    $get_status_name = $helper->getCurrentOrderStatus($order->status);
-                    $card_name = $helper->formatOrderNumberForView($order->sales_order_id);
-                    $card_description = 'Created on: Order by: ' . $helper->formatDateTimeWithSeconds($order->created_at);
 
-                    $close_default = 'false';
-
-                    Log::info($helper->matchTrelloBoardId($order->supplier_id)." -- ".$helper->matchTrelloListId($order->status, $order->supplier_id)
-                        ." -- ".'Order #' . $helper->formatOrderNumberForView($order->sales_order_id)." -- ".$card_description);
-
-
-                        //->setBoardId($helper->matchTrelloBoardId($order->supplier_id))
+                    $card_description = 'Created on: ' . $helper->formatDateTimeWithSeconds($order->created_at);
                     $card
                         ->setListId($helper->matchTrelloListId($order->status, $order->supplier_id))
                         ->setName('Order #' . $helper->formatOrderNumberForView($order->sales_order_id))
@@ -404,16 +317,8 @@ class OrdersController extends Controller
                 }
             }
         } else {
-            //validate and sync pulled now, validate, update and push i.e update
-            //foreach
+
         }
         return (json_encode($final_card));
-        /////return json_encode($boards);
-
     }
-
-
-
-
-
 }
