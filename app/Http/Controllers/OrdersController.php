@@ -276,7 +276,8 @@ class OrdersController extends Controller
     }
 
     public function fetchTrelloToken(){
-        return Socialite::with('trello')->redirect();
+        //return Socialite::with('trello')->redirect();
+        return Socialite::with('trello')->scopes(['read', 'write'])->redirect();
     }
 
     public function fetchTrelloTokenCallback(){
