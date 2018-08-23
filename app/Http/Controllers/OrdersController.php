@@ -366,15 +366,41 @@ class OrdersController extends Controller
                         $card_description = $single_card['desc'];
                         $close_default = $single_card['closed']; //false
 
-                        Log::info(json_encode($single_card));
+                        //Log::info(json_encode($single_card));
                         $final_card[] = $single_card;
+
 
                     }
                 }
             }
 
 
+        $all_orders = Orders::all();
+        $helper = new Helpers();
+        if(sizeof($final_card)==0){
+            foreach($all_orders as $order){
+            //push all from our db
+            $get_supplier = $order->ordersSupplierRelationship->name;
+            $get_status_name = $helper->getCurrentOrderStatus($order->status);
+            $card_name = $helper->formatOrderNumberForView($order->sales_order_id);
+            $card_description = 'Order by: '.$order->fetchMagentoOrders->customer_firstname.' '.
+                $order->fetchMagentoOrders->customer_middlename.' '.$order->fetchMagentoOrders->customer_lastname.'.
+                Purchase point: '.$order->fetchMagentoOrders->ordersSalesInvoice->store_name.'. Purchase date: '
+                .$helper->formatDateTimeWithSeconds($order->fetchMagentoOrders->created_at);
+            }
+            $close_default = 'false';
 
+            $card
+                ->setBoard($get_supplier)
+                ->setList($get_status_name)
+                ->setName($card_name)
+                ->setDescription($card_description)
+                ->save();
+
+        }else{
+            //validate and sync pulled now validate update and push i.e update
+            //foreach
+        }
 
 
         return(json_encode($final_card));

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Session;
 class Helpers extends Model
 {
     protected $colors = array(1 => "cadetblue", "cornflowerblue", "#007bff", "lightgreen", "lightpink", "deeppink", "firebrick");
-    protected $state = array(1 => "CREATED", "SHIPPED", "DELIVERED", "CLOSED", "ASKED RETURN", "RETURNED", "PROBLEMATIC");
+    protected $state = array(1 => "CREATED", "SHIPPED", "DELIVERED", "CLOSED", "ASKED_RETURN", "RETURNED", "PROBLEMATIC");
 
     public function formatDateTimeWithSeconds($the_string){
         return date("F jS, Y - g:ia", strtotime($the_string));
